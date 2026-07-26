@@ -25,11 +25,19 @@
     background: var(--white);
     color: var(--dark);
     overflow-x: hidden;
+    font-size: 16px;
+    line-height: 1.8;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
   }
+
+  /* 日本語の折り返しを自然に */
+  h1, h2, h3, .day-title, .check-card-title { line-break: strict; }
 
   /* ===== COVER PAGE ===== */
   .cover {
     min-height: 100vh;
+    min-height: 100svh;
     background: linear-gradient(160deg, #001f3f 0%, #006994 40%, #00a8cc 70%, #87CEEB 100%);
     position: relative;
     display: flex;
@@ -96,17 +104,19 @@
   }
 
   .cover-badge {
-    background: rgba(255,255,255,0.15);
+    background: rgba(255,255,255,0.22);
     backdrop-filter: blur(10px);
-    border: 1px solid rgba(255,255,255,0.3);
+    border: 1px solid rgba(255,255,255,0.45);
     border-radius: 50px;
-    padding: 8px 24px;
+    padding: 9px 24px;
     color: white;
-    font-size: 0.75rem;
+    font-size: 0.85rem;
     letter-spacing: 3px;
     text-transform: uppercase;
     margin-bottom: 20px;
     animation: fadeSlideDown 1s ease-out;
+    position: relative;
+    z-index: 2;
   }
 
   .cover-title {
@@ -131,11 +141,17 @@
   }
 
   .cover-date {
-    font-size: clamp(0.9rem, 2.5vw, 1.2rem);
-    color: rgba(255,255,255,0.9);
-    margin-top: 20px;
-    letter-spacing: 2px;
+    font-size: clamp(1rem, 2.5vw, 1.2rem);
+    color: #fff;
+    margin-top: 22px;
+    max-width: 22em;
+    text-align: center;
+    line-height: 1.9;
+    letter-spacing: 0.5px;
+    text-shadow: 0 2px 12px rgba(0,0,50,0.45);
     animation: fadeSlideDown 1s ease-out 0.4s both;
+    position: relative;
+    z-index: 2;
   }
 
   .cover-family {
@@ -143,16 +159,19 @@
     display: flex;
     gap: 15px;
     animation: fadeSlideDown 1s ease-out 0.6s both;
+    position: relative;
+    z-index: 2;
   }
   .family-tag {
-    background: rgba(255,255,255,0.2);
+    background: rgba(255,255,255,0.25);
     backdrop-filter: blur(5px);
-    border: 1px solid rgba(255,255,255,0.4);
+    border: 1px solid rgba(255,255,255,0.5);
     border-radius: 12px;
     padding: 10px 18px;
     color: white;
     text-align: center;
-    font-size: 0.85rem;
+    font-size: 0.95rem;
+    line-height: 1.5;
   }
   .family-tag .emoji { font-size: 1.5rem; display: block; margin-bottom: 4px; }
 
@@ -192,6 +211,7 @@
     padding: 60px 20px;
   }
   .day-card {
+    --accent: var(--ocean);
     background: white;
     border-radius: 20px;
     padding: 30px;
@@ -200,7 +220,7 @@
     display: grid;
     grid-template-columns: 90px 1fr;
     gap: 20px;
-    border-left: 5px solid var(--ocean);
+    border-left: 6px solid var(--accent);
     transition: transform 0.2s, box-shadow 0.2s;
     position: relative;
     overflow: hidden;
@@ -216,10 +236,14 @@
     border-radius: 0 0 0 100%;
   }
   .day-card:hover { transform: translateX(5px); box-shadow: 0 12px 40px rgba(0, 105, 148, 0.18); }
-  .day-card:nth-child(2) { border-left-color: var(--coral); }
-  .day-card:nth-child(3) { border-left-color: var(--sunset); }
-  .day-card:nth-child(4) { border-left-color: var(--palm); }
-  .day-card:nth-child(5) { border-left-color: var(--gold); }
+
+  /* 日ごとのアクセントカラー（クラス指定で確実に効かせる） */
+  .day-card.d0 { --accent: #8e44ad; }
+  .day-card.d1 { --accent: var(--ocean); }
+  .day-card.d2 { --accent: var(--coral); }
+  .day-card.d3 { --accent: var(--sunset); }
+  .day-card.d4 { --accent: var(--palm); }
+  .day-card.d5 { --accent: #b8901f; }
 
   .day-num {
     text-align: center;
@@ -227,51 +251,66 @@
   }
   .day-num .day-label {
     font-family: 'Playfair Display', serif;
-    font-size: 2.5rem;
+    font-size: 2.6rem;
     font-weight: 700;
-    color: var(--ocean);
+    color: var(--accent);
     line-height: 1;
   }
   .day-num .day-text {
-    font-size: 0.7rem;
-    color: #888;
+    font-size: 0.8rem;
+    color: #5a6672;
     letter-spacing: 1px;
     text-transform: uppercase;
   }
   .day-date {
-    font-size: 0.8rem;
-    color: var(--coral);
-    font-weight: 500;
+    font-size: 0.92rem;
+    color: #d1495b;
+    font-weight: 700;
     margin-bottom: 8px;
-    letter-spacing: 1px;
+    letter-spacing: 0.5px;
   }
   .day-title {
-    font-size: 1.2rem;
+    font-size: 1.3rem;
     font-weight: 700;
-    margin-bottom: 12px;
+    margin-bottom: 14px;
     color: var(--dark);
+    line-height: 1.5;
   }
   .day-items {
     list-style: none;
     display: flex;
     flex-direction: column;
-    gap: 6px;
+    gap: 10px;
   }
+  /* li は flex にしない（<strong> が別カラムに分裂するため） */
   .day-items li {
-    display: flex;
-    align-items: flex-start;
-    gap: 8px;
-    font-size: 0.88rem;
-    color: #444;
-    line-height: 1.5;
+    position: relative;
+    padding-left: 22px;
+    font-size: 0.98rem;
+    color: #333;
+    line-height: 1.85;
   }
   .day-items li::before {
     content: '▸';
-    color: var(--coral);
-    font-size: 0.8rem;
-    margin-top: 2px;
-    flex-shrink: 0;
+    position: absolute;
+    left: 2px;
+    top: 0;
+    color: var(--accent);
+    font-size: 0.95rem;
   }
+  /* カード内の補足メモ（インライン装飾されているブロック） */
+  .day-card .note {
+    background: #e8f5e9;
+    border-left: 4px solid var(--palm);
+    border-radius: 8px;
+    padding: 14px 16px;
+    margin-top: 16px;
+    font-size: 0.92rem;
+    line-height: 1.85;
+    color: #17492a;
+  }
+  .warn { color: #b3271e; }
+  .muted { color: #5a6672; }
 
   /* ===== BUDGET ===== */
   .budget-section {
@@ -297,7 +336,7 @@
     color: #FFD700;
     line-height: 1;
   }
-  .budget-total .label { font-size: 0.9rem; color: rgba(255,255,255,0.7); margin-top: 5px; }
+  .budget-total .label { font-size: 0.95rem; color: rgba(255,255,255,0.92); margin-top: 8px; }
   .budget-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
@@ -306,16 +345,26 @@
     margin: 0 auto;
   }
   .budget-item {
-    background: rgba(255,255,255,0.1);
+    background: rgba(255,255,255,0.14);
     backdrop-filter: blur(10px);
-    border: 1px solid rgba(255,255,255,0.2);
+    border: 1px solid rgba(255,255,255,0.28);
     border-radius: 16px;
-    padding: 20px;
+    padding: 22px 20px;
     text-align: center;
+    display: flex;
+    flex-direction: column;
   }
   .budget-item .b-emoji { font-size: 2rem; margin-bottom: 8px; }
-  .budget-item .b-label { font-size: 0.8rem; color: rgba(255,255,255,0.7); margin-bottom: 6px; }
-  .budget-item .b-amount { font-size: 1.2rem; font-weight: 700; color: #FFD700; }
+  .budget-item .b-label { font-size: 0.88rem; color: rgba(255,255,255,0.92); margin-bottom: 12px; line-height: 1.7; flex: 1; }
+  .budget-item .b-amount { font-size: 1.35rem; font-weight: 700; color: #FFD700; }
+  .budget-note {
+    max-width: 720px;
+    margin: 25px auto 0;
+    text-align: left;
+    color: rgba(255,255,255,0.85);
+    font-size: 0.88rem;
+    line-height: 1.9;
+  }
 
   /* ===== CHECKLIST ===== */
   .checklist-bg {
@@ -340,7 +389,7 @@
   .check-card.info { border-top-color: var(--ocean); }
   .check-card.tip { border-top-color: var(--palm); }
   .check-card-title {
-    font-size: 1rem;
+    font-size: 1.1rem;
     font-weight: 700;
     margin-bottom: 15px;
     display: flex;
@@ -348,33 +397,35 @@
     gap: 8px;
     color: var(--dark);
   }
-  .check-list { list-style: none; display: flex; flex-direction: column; gap: 8px; }
+  .check-list { list-style: none; display: flex; flex-direction: column; gap: 12px; }
   .check-list li {
-    display: flex;
-    align-items: flex-start;
-    gap: 8px;
-    font-size: 0.85rem;
-    color: #555;
-    line-height: 1.4;
+    position: relative;
+    padding-left: 32px;
+    font-size: 0.95rem;
+    color: #3b4450;
+    line-height: 1.75;
   }
   .check-box {
-    width: 18px;
-    height: 18px;
+    position: absolute;
+    left: 0;
+    top: 4px;
+    width: 22px;
+    height: 22px;
     border: 2px solid var(--coral);
-    border-radius: 4px;
-    flex-shrink: 0;
-    margin-top: 1px;
+    border-radius: 5px;
     cursor: pointer;
     transition: all 0.2s;
-    position: relative;
   }
+  .check-box:hover { background: rgba(255,107,107,0.15); }
   .check-box.checked {
     background: var(--coral);
   }
+  .check-box.checked:hover { background: var(--coral); }
   .check-box.checked::after {
     content: '✓';
     color: white;
-    font-size: 12px;
+    font-size: 15px;
+    line-height: 1;
     position: absolute;
     top: 50%;
     left: 50%;
@@ -394,9 +445,10 @@
     gap: 15px;
   }
   .alert-icon { font-size: 2rem; flex-shrink: 0; }
-  .alert-content h3 { color: #c0392b; font-size: 1rem; margin-bottom: 8px; }
-  .alert-content p, .alert-content li { font-size: 0.85rem; color: #7f4f24; line-height: 1.6; }
-  .alert-content ul { margin-left: 15px; }
+  .alert-content h3 { color: #a5281b; font-size: 1.1rem; margin-bottom: 10px; line-height: 1.5; }
+  .alert-content p, .alert-content li { font-size: 0.95rem; color: #5f3a15; line-height: 1.85; }
+  .alert-content p + p { margin-top: 8px; }
+  .alert-content ul { margin-left: 18px; display: flex; flex-direction: column; gap: 8px; }
 
   /* ===== TIPS ===== */
   .tips-section {
@@ -420,8 +472,8 @@
   }
   .tip-card:hover { transform: translateY(-5px); }
   .tip-card .t-emoji { font-size: 2.5rem; margin-bottom: 10px; }
-  .tip-card h3 { font-size: 0.95rem; font-weight: 700; color: var(--dark); margin-bottom: 8px; }
-  .tip-card p { font-size: 0.8rem; color: #555; line-height: 1.5; }
+  .tip-card h3 { font-size: 1.05rem; font-weight: 700; color: var(--dark); margin-bottom: 10px; }
+  .tip-card p { font-size: 0.92rem; color: #3b4450; line-height: 1.8; text-align: left; }
 
   /* ===== FOOTER ===== */
   .footer {
@@ -436,20 +488,22 @@
     color: #FFD700;
     margin-bottom: 10px;
   }
-  .footer p { color: rgba(255,255,255,0.6); font-size: 0.85rem; }
+  .footer p { color: rgba(255,255,255,0.88); font-size: 0.95rem; line-height: 1.8; }
 
   /* ===== HIGHLIGHT BADGE ===== */
   .highlight {
     display: inline-block;
-    background: linear-gradient(135deg, var(--coral), var(--sunset));
+    background: linear-gradient(135deg, #e8523f, #e07a2c);
     color: white;
-    font-size: 0.7rem;
-    padding: 2px 10px;
+    font-size: 0.8rem;
+    padding: 3px 12px;
     border-radius: 20px;
     font-weight: 700;
     margin-left: 8px;
     vertical-align: middle;
-    letter-spacing: 1px;
+    letter-spacing: 0.5px;
+    line-height: 1.6;
+    white-space: nowrap;
   }
 
   /* DIVIDER */
@@ -464,23 +518,83 @@
   .transport-strip {
     background: white;
     border-radius: 12px;
-    padding: 15px 20px;
+    padding: 18px 22px;
     margin-top: 12px;
     display: flex;
-    align-items: center;
-    gap: 10px;
-    font-size: 0.83rem;
-    color: #444;
-    border-left: 3px solid var(--sky);
+    align-items: flex-start;
+    gap: 12px;
+    font-size: 0.95rem;
+    line-height: 1.9;
+    color: #333;
+    border-left: 4px solid var(--ocean);
     box-shadow: 0 2px 10px rgba(0,0,0,0.05);
   }
-  .transport-strip .t-icon { font-size: 1.3rem; }
+  .transport-strip .t-icon { font-size: 1.5rem; line-height: 1.4; flex-shrink: 0; }
+
+  /* ===== 情報カード（手配状況・特典など） ===== */
+  .info-panel {
+    max-width: 900px;
+    margin: 35px auto 0;
+    background: white;
+    border-radius: 16px;
+    padding: 28px;
+    box-shadow: 0 4px 20px rgba(0,105,148,0.12);
+    border-top: 4px solid var(--coral);
+  }
+  .info-panel h3 {
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: var(--dark);
+    margin-bottom: 8px;
+    line-height: 1.5;
+  }
+  .info-panel .lead {
+    font-size: 0.92rem;
+    color: #5a6672;
+    margin-bottom: 18px;
+    line-height: 1.8;
+  }
+  .status-box {
+    border-radius: 12px;
+    padding: 18px 20px;
+    margin-bottom: 16px;
+    border-left: 4px solid var(--sunset);
+    background: #fff8f0;
+  }
+  .status-box > strong { font-size: 1rem; line-height: 1.6; display: block; }
+  .status-box p { font-size: 0.92rem; color: #3b4450; margin-top: 8px; line-height: 1.9; }
+  .status-box .sub { font-size: 0.88rem; }
+  .grid-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+    gap: 14px;
+  }
+  .grid-cards > div {
+    border-radius: 12px;
+    padding: 16px 18px;
+    background: #f0f9ff;
+    font-size: 0.92rem;
+    line-height: 1.8;
+  }
+  .grid-cards > div strong { font-size: 0.98rem; }
+  .grid-cards p { font-size: 0.9rem; color: #3b4450; margin-top: 6px; line-height: 1.8; }
+  .fineprint { font-size: 0.85rem; color: #5a6672; margin-top: 14px; line-height: 1.8; }
+
+  a { color: #0b6ea8; }
 
   /* responsive */
-  @media (max-width: 600px) {
-    .day-card { grid-template-columns: 1fr; }
+  @media (max-width: 700px) {
+    .section { padding: 45px 16px; }
+    .itinerary-bg, .checklist-bg, .tips-section { padding: 45px 0; }
+    .budget-section { padding: 45px 18px; }
+    .day-card { grid-template-columns: 1fr; padding: 22px 20px; gap: 12px; }
+    .day-num { text-align: left; display: flex; align-items: baseline; gap: 10px; }
     .cover-family { flex-wrap: wrap; justify-content: center; }
     .sun { width: 70px; height: 70px; top: 40px; right: 30px; }
+    .info-panel { padding: 22px 20px; border-radius: 14px; }
+    .alert-box { padding: 18px; gap: 12px; }
+    .transport-strip { padding: 16px 18px; }
+    .day-title { font-size: 1.15rem; }
   }
 </style>
 </head>
@@ -498,10 +612,10 @@
 
   <div class="cover-badge">✈ Family Travel 2027</div>
 
-  <div class="cover-title">
+  <h1 class="cover-title">
     GUAM
     <span class="guam-sub">グアム 家族の旅</span>
-  </div>
+  </h1>
 
   <div class="cover-date">📅 2027年1月19日（火）前泊 〜 1月24日（日）帰宅　4泊5日＋前泊</div>
 
@@ -528,24 +642,27 @@
 <!-- ===== 旅程 ===== -->
 <div class="itinerary-bg">
   <div class="section">
-    <div class="section-title">🗓 旅のスケジュール</div>
+    <h2 class="section-title">🗓 旅のスケジュール</h2>
 
     <!-- 移動情報 -->
     <div class="transport-strip">
       <span class="t-icon">🏨</span>
       <span><strong>前日（1月19日）に成田前泊！</strong>　東横INN成田空港（新館）がおすすめ<br>
-      相模大野 → 新宿 → 成田空港（所要 約2時間）｜JAL <strong>JL0941便</strong> 成田10:00発 → グアム14:35着｜宿泊：<strong>ザ ツバキ タワー</strong>（カメリアクラブルーム オーシャンビュー ツインベッドルーム／ラウンジアクセス込／1部屋4人）｜空港⇔ホテル送迎付き｜<strong>✅ JTB予約確定済み（2026/6/14）</strong></span>
+      相模大野 → 新宿 → 成田空港（所要 約2時間）<br>
+      JAL <strong>JL0941便</strong> 成田10:00発 → グアム14:35着<br>
+      宿泊：<strong>ザ ツバキ タワー</strong>（カメリアクラブルーム オーシャンビュー ツインベッドルーム／ラウンジアクセス込／1部屋4人）・空港⇔ホテル送迎付き<br>
+      <strong>✅ JTB予約確定済み（2026/6/14）</strong></span>
     </div>
 
     <!-- DAY 0 前泊 -->
-    <div class="day-card" style="margin-top:30px; border-left-color: #9b59b6;">
+    <div class="day-card d0" style="margin-top:30px;">
       <div class="day-num">
-        <div class="day-label" style="color:#9b59b6;">0</div>
+        <div class="day-label">0</div>
         <div class="day-text">前泊</div>
       </div>
       <div>
-        <div class="day-date" style="color:#9b59b6;">📅 1月19日（火）前日</div>
-        <div class="day-title">🏨 成田に前泊でゆったり準備！</div>
+        <div class="day-date" style="color:#7d3c98;">📅 1月19日（火）前日</div>
+        <h3 class="day-title">🏨 成田に前泊でゆったり準備！</h3>
         <ul class="day-items">
           <li>相模大野駅 → 新宿 → 成田空港（所要約2時間）</li>
           <li>東横INN成田空港（新館）チェックイン🛏️</li>
@@ -557,14 +674,14 @@
     </div>
 
     <!-- DAY 1 -->
-    <div class="day-card" style="margin-top:10px;">
+    <div class="day-card d1" style="margin-top:10px;">
       <div class="day-num">
         <div class="day-label">1</div>
         <div class="day-text">DAY</div>
       </div>
       <div>
         <div class="day-date">📅 1月20日（水）</div>
-        <div class="day-title">✈️ 出発！グアムへ Let's Go！</div>
+        <h3 class="day-title">✈️ 出発！グアムへ Let's Go！</h3>
         <ul class="day-items">
           <li>7:30 ホテルで朝食🍳 → 8:00 無料シャトルバスで成田空港へ</li>
           <li>8:15 成田空港 第2ターミナル着・チェックイン＆手荷物預け</li>
@@ -581,14 +698,14 @@
     </div>
 
     <!-- DAY 2 -->
-    <div class="day-card">
+    <div class="day-card d2">
       <div class="day-num">
         <div class="day-label">2</div>
         <div class="day-text">DAY</div>
       </div>
       <div>
         <div class="day-date">📅 1月21日（木）</div>
-        <div class="day-title">🌊 海の全部乗せデー</div>
+        <h3 class="day-title">🌊 海の全部乗せデー</h3>
         <ul class="day-items">
           <li>7:30 ラウンジで朝食☀️（カメリアクラブルーム特典）<strong>水着を着て出発</strong>・バスタオル持参！</li>
           <li>8:45 🚐 ホテルお迎え → <strong>スキューバカンパニー マリンスポーツ</strong><span class="highlight">JTB売れ筋2位</span></li>
@@ -598,7 +715,7 @@
           <li>15:00 🏊 プールでのんびり or 部屋で休憩（ガッツリ遊んだあとやからここは無理せんとこ）</li>
           <li>18:30 🍽️ 夕食：ホテル内「TSUBAKI PRIME」で豪華ステーキ＆シーフード<span class="highlight">贅沢ディナー！</span></li>
         </ul>
-        <div style="background:#e8f5e9; border-left:3px solid var(--palm); border-radius:8px; padding:10px 14px; margin-top:12px; font-size:0.82rem; color:#1e5631;">
+        <div class="note">
           💡 「イルカ＆ウミガメ」と「パラセーリング」を別々の日に入れるより、<strong>全部入りプラン1本のほうが約800円安い</strong>と判明。1日にまとめたことで1/22がまるっと空いたで🎉<br>
           <strong>4人合計 74,890円</strong>（12歳以上19,708円／6〜11歳15,766円）※美緒ちゃんは12歳なので大人料金
         </div>
@@ -606,29 +723,29 @@
     </div>
 
     <!-- DAY 3 -->
-    <div class="day-card">
+    <div class="day-card d3">
       <div class="day-num">
         <div class="day-label">3</div>
         <div class="day-text">DAY</div>
       </div>
       <div>
         <div class="day-date">📅 1月22日（金）</div>
-        <div class="day-title">🎠 遊んで買って、夜はショーデー</div>
+        <h3 class="day-title">🎠 遊んで買って、夜はショーデー</h3>
         <ul class="day-items">
           <li>8:00 ラウンジで朝食🍳 前日たっぷり遊んだから今日はゆっくりめに</li>
           <li>9:30〜11:30 🏊 <strong>ザ ツバキ タワーのプールで遊ぶ</strong>（ホテルのプールやから無料）</li>
           <li>12:00 🍔 <strong>マイクロネシアモール</strong>でランチ（フードコートで気軽に）</li>
           <li>13:00〜15:00 🎠 <strong>モール内の屋内遊園地＆ゲームセンターで子どもタイム</strong><span class="highlight">ここが本日のメイン</span><br>入場無料・乗り物は都度払い。映画館もあるで</li>
-          <li>15:30〜16:15 🛍️ DFSギャラリアを<strong>45分だけ</strong>サッと見る<br><span style="color:#666;">※ハイブランド中心で子どもは退屈するんで短時間で切り上げるのがコツ</span></li>
+          <li>15:30〜16:15 🛍️ DFSギャラリアを<strong>45分だけ</strong>サッと見る<br><span class="muted">※ハイブランド中心で子どもは退屈するんで短時間で切り上げるのがコツ</span></li>
           <li>16:30 🛒 <strong>Kマート</strong>でお土産のお菓子をまとめ買い🍫<span class="highlight">バラマキ土産はここが最強</span></li>
-          <li>17:00 🏨 ホテルに戻ってシャワー・着替え<br><span style="color:#c0392b;">⚠️ カレラは<strong>ビーチウェア不可</strong>（カジュアル〜セミフォーマル）。冷房強いので薄手の上着も持参</span></li>
+          <li>17:00 🏨 ホテルに戻ってシャワー・着替え<br><span class="warn">⚠️ カレラは<strong>ビーチウェア不可</strong>（カジュアル〜セミフォーマル）。冷房強いので薄手の上着も持参</span></li>
           <li>17:45 🍽️ <strong>早めの夕食</strong>：本格チャモロ料理レストランで島の味を堪能</li>
-          <li>18:45 🚌 <strong>サンドキャッスル</strong>へ（<span style="color:#c0392b;">送迎なし</span>・赤いシャトルバスで移動）ドアオープン</li>
+          <li>18:45 🚌 <strong>サンドキャッスル</strong>へ（<span class="warn">送迎なし</span>・赤いシャトルバスで移動）ドアオープン</li>
           <li>19:45〜20:45 🎭 <strong>カレラ・不思議な航海と冒険の旅</strong><span class="highlight">JTB売れ筋1位！</span><br>
           シルク・ドゥ・ソレイユ等のクリエイターが製作した本格ステージ。ファイヤーダンス＆アクロバット＆生演奏。<strong>セリフが分からんでも楽しめる</strong>タイプのショーやで</li>
           <li>21:00頃 🏨 ホテル帰着</li>
         </ul>
-        <div style="background:#e8f5e9; border-left:3px solid var(--palm); border-radius:8px; padding:10px 14px; margin-top:12px; font-size:0.82rem; color:#1e5631;">
+        <div class="note">
           💡 当初は「タロフォフォの滝＋DFSで2時間半のショッピング」やったけど、<strong>子どもが退屈する</strong>と判断して組み替え。買い物は1時間ちょいに圧縮して、<strong>プール・遊園地・ショー</strong>で子ども中心の一日にしたで。<br>
           <strong>カレラ 4人合計 51,240円</strong>（大人15,766円×3／6〜11歳3,942円×1）※美緒ちゃんは12歳から大人料金<br>
           🗓️ カレラは<strong>月・火・木・金・土</strong>公演（日・水は休演）→ 1/22は金曜なので催行日
@@ -637,25 +754,25 @@
     </div>
 
     <!-- DAY 4 -->
-    <div class="day-card">
+    <div class="day-card d4">
       <div class="day-num">
         <div class="day-label">4</div>
         <div class="day-text">DAY</div>
       </div>
       <div>
         <div class="day-date">📅 1月23日（土）</div>
-        <div class="day-title">🌅 恋人岬でサンセット観賞デー</div>
+        <h3 class="day-title">🌅 恋人岬でサンセット観賞デー</h3>
         <ul class="day-items">
           <li>8:00 ホテルのバルコニーでゆっくり朝食☀️ 最高のオーシャンビューを満喫</li>
           <li>10:00 ラッテストーン公園（グアムの歴史スポット・チャモロ文化にふれる）</li>
           <li>12:00 🍴 タモン地区の人気レストランでランチ</li>
-          <li>14:00〜<strong>15:45</strong> 🏊 ザ ツバキ タワーのプールでまったりリゾート気分<br><span style="color:#c0392b;">※15:45にはあがって着替え、16:15ごろホテルを出発するで</span></li>
-          <li>16:45〜19:30ごろ 🌅 <strong>ゆうやけテラスツアー at 恋人岬</strong><span class="highlight">🟡申込済み（手配中）・$0／確定待ち</span><br>
+          <li>14:00〜<strong>15:45</strong> 🏊 ザ ツバキ タワーのプールでまったりリゾート気分<br><span class="warn">※15:45にはあがって着替え、16:15ごろホテルを出発するで</span></li>
+          <li>16:45〜19:30ごろ 🌅 <strong>ゆうやけテラスツアー at 恋人岬</strong><span class="highlight">🟡手配中・$0</span><br>
           恋人岬の展望台から黄金色の夕暮れを観賞📸 テラスでドリンク2杯＆スナック付き。往復送迎・展望台入場料込み<br>
-          <span style="color:#c0392b;">⚠️ 現在は手配中。確定メールで集合場所・開始／終了時刻を要確認（デュシタニグアムリゾート発の場合は赤いシャトルバスで移動）</span></li>
+          <span class="warn">⚠️ 現在は手配中。確定メールで集合場所・開始／終了時刻を要確認（デュシタニグアムリゾート発の場合は赤いシャトルバスで移動）</span></li>
           <li>20:15〜20:30 🥩 最終夜は豪華ディナー！高級ステーキ or シーフードで締め🦞</li>
         </ul>
-        <div style="background:#e8f5e9; border-left:3px solid var(--palm); border-radius:8px; padding:10px 14px; margin-top:12px; font-size:0.82rem; color:#1e5631;">
+        <div class="note">
           💡 当初は「午前に恋人岬 → 夕方にサンセットクルーズ」の2本立てやったけど、<strong>サンセットクルーズ（BIGサンセットディナークルーズ）は月・木しか催行してへん</strong>ことが判明。1/23は土曜で運休やった。<br>
           代わりに<strong>恋人岬と夕日を1本にまとめた「ゆうやけテラスツアー」</strong>に変更。キャンペーン特典を<strong>4人分 $0で申込済み</strong>やけど、現在は手配中・確定待ちやで。
         </div>
@@ -663,14 +780,14 @@
     </div>
 
     <!-- DAY 5 -->
-    <div class="day-card">
+    <div class="day-card d5">
       <div class="day-num">
         <div class="day-label">5</div>
         <div class="day-text">DAY</div>
       </div>
       <div>
         <div class="day-date">📅 1月24日（日）</div>
-        <div class="day-title">🏠 帰国日 〜最後のグアムを満喫！〜</div>
+        <h3 class="day-title">🏠 帰国日 〜最後のグアムを満喫！〜</h3>
         <ul class="day-items">
           <li>8:00 ホテルで朝食🍳 荷物をまとめる・最後のバルコニービューを目に焼きつけて</li>
           <li>11:00 🏨 ザ ツバキ タワー チェックアウト（フロントに荷物を無料で預ける！）</li>
@@ -691,7 +808,7 @@
 
 <!-- ===== 予算 ===== -->
 <div class="budget-section">
-  <div class="budget-title">💰 予算プラン（4人合計）</div>
+  <h2 class="budget-title">💰 予算プラン（4人合計）</h2>
   <div class="budget-total">
     <div class="amount">¥1,363,000</div>
     <div class="label">総予算目安（JTB確定額ベース・ザ ツバキ タワー1部屋4人）</div>
@@ -729,24 +846,24 @@
     </div>
   </div>
 
-  <div style="max-width:700px; margin:30px auto 0; background:rgba(255,255,255,0.1); border:1px solid rgba(255,255,255,0.25); border-radius:16px; padding:22px 25px;">
-    <h3 style="color:#FFD700; font-size:1rem; margin-bottom:12px;">💳 支払いスケジュールの注意</h3>
-    <ul style="font-size:0.85rem; color:rgba(255,255,255,0.9); line-height:1.8; margin-left:18px;">
+  <div style="max-width:720px; margin:30px auto 0; background:rgba(255,255,255,0.14); border:1px solid rgba(255,255,255,0.3); border-radius:16px; padding:24px 26px;">
+    <h3 style="color:#FFD700; font-size:1.1rem; margin-bottom:14px;">💳 支払いスケジュールの注意</h3>
+    <ul style="font-size:0.95rem; color:rgba(255,255,255,0.95); line-height:1.95; margin-left:18px; display:flex; flex-direction:column; gap:8px;">
       <li>申込金は決済済み。<strong style="color:#FFD700;">残金は出発の22日前ごろにクレジットカードから自動決済</strong>されるで（2026年12月下旬）。</li>
       <li>年末にまとまった金額が一度に落ちるから、<strong style="color:#FFD700;">12月中にカードの利用限度額を確認</strong>しといてな。</li>
       <li>決済できひんかった場合は、たびページから別カードで手続きし直しになるで。</li>
       <li>キャンセル料は<strong style="color:#FFD700;">2026/12/20まで無料</strong>。以降 12/21・1/6・1/18・1/20 の4段階で上がっていくで。</li>
     </ul>
-    <p style="font-size:0.78rem; color:rgba(255,255,255,0.6); margin-top:12px;">※ 正確な金額・日付は JTB「たびページ」の予約明細書で確認してな。</p>
+    <p style="font-size:0.88rem; color:rgba(255,255,255,0.85); margin-top:14px;">※ 正確な金額・日付は JTB「たびページ」の予約明細書で確認してな。</p>
   </div>
 
-  <p style="text-align:center; color:rgba(255,255,255,0.6); font-size:0.8rem; margin-top:25px;">※ JTB「ルックJTB MySTYLE」ザ ツバキ タワー（カメリアクラブルーム オーシャンビュー ツインベッドルーム・ラウンジアクセス込）／JAL直行便・成田発／<strong>おとな3名＋こども1名</strong>・1部屋。タイムセール割引 適用済み。パッケージ代金には<strong>燃油サーチャージ・空港諸税・国内空港施設使用料がすべて含まれ、現地での追加支払いはなし</strong>。<br>食事・アクティビティ・お土産などの金額は目安です。</p>
+  <p class="budget-note">※ JTB「ルックJTB MySTYLE」ザ ツバキ タワー（カメリアクラブルーム オーシャンビュー ツインベッドルーム・ラウンジアクセス込）／JAL直行便・成田発／<strong>おとな3名＋こども1名</strong>・1部屋。タイムセール割引 適用済み。パッケージ代金には<strong>燃油サーチャージ・空港諸税・国内空港施設使用料がすべて含まれ、現地での追加支払いはなし</strong>。<br>食事・アクティビティ・お土産などの金額は目安です。</p>
 </div>
 
 <!-- ===== チェックリスト ===== -->
 <div class="checklist-bg">
   <div class="section">
-    <div class="section-title">📋 出発前チェックリスト</div>
+    <h2 class="section-title">📋 出発前チェックリスト</h2>
 
     <!-- JTB予約からの要対応 -->
     <div class="alert-box" style="background:linear-gradient(135deg,#ffe3e3,#ffc9c9); border-color:#e74c3c;">
@@ -760,7 +877,7 @@
           出発22日前のカード自動決済や。<strong>年末にまとまった金額が一発で落ちる</strong>ので、カードの利用限度額に余裕があるか12月中に確認を。正確な日付・金額はJTBのたびページで確認してな。</li>
           <li><strong>③ Guam-CNMI ETA（電子渡航認証）の申請</strong><br>
           パスポートとは<strong>別モノ</strong>やで！グアム入国にはオンライン申請が必須（有効なESTAを持ってる場合は不要）。<br>
-          申請サイト → <a href="https://g-cnmi-eta.cbp.dhs.gov/" target="_blank" rel="noopener" style="color:#c0392b; font-weight:700;">g-cnmi-eta.cbp.dhs.gov</a></li>
+          申請サイト → <a href="https://g-cnmi-eta.cbp.dhs.gov/" target="_blank" rel="noopener" style="color:#a5281b; font-weight:700; overflow-wrap:anywhere;">g-cnmi-eta.cbp.dhs.gov</a></li>
         </ul>
       </div>
     </div>
@@ -782,7 +899,7 @@
       <div class="alert-content">
         <h3>📘 パスポートをまだ持っていない場合は早めに申請を！</h3>
         <p>2027年1月出発まで約1年！出発時、美緒さんは<strong>12歳（中1）</strong>、友也くんは<strong>10歳（小4）</strong>になってるで。</p>
-        <p style="background:rgba(46,134,79,0.12); border:1px solid rgba(46,134,79,0.3); border-radius:8px; padding:10px 12px; margin-top:10px; color:#1e5631;"><strong>💡 2026年7月1日から手数料が大きく値下げ！</strong><br>急がなければ<strong>7月以降にオンライン申請（マイナポータル）</strong>するのが一番お得やで😊　出発は2027年1月やから時間に余裕あり。（※制度開始直後は発行に<strong>約1か月</strong>かかる場合があるので、夏〜秋のうちに申請を）</p>
+        <p style="background:rgba(46,134,79,0.14); border:1px solid rgba(46,134,79,0.35); border-radius:8px; padding:14px 16px; margin-top:12px; color:#17492a;"><strong>💡 2026年7月1日から手数料が大きく値下げ！</strong><br>急がなければ<strong>7月以降にオンライン申請（マイナポータル）</strong>するのが一番お得やで😊　出発は2027年1月やから時間に余裕あり。（※制度開始直後は発行に<strong>約1か月</strong>かかる場合があるので、夏〜秋のうちに申請を）</p>
         <ul>
           <li>申請先：お住まいの市区町村の窓口（相模原市役所 等）、または<strong>マイナポータルでオンライン申請</strong></li>
           <li>必要書類：顔写真・本人確認書類・申請書・手数料（オンラインなら戸籍謄本は原則不要）</li>
@@ -798,11 +915,11 @@
       <div class="check-card urgent">
         <div class="check-card-title">🔴 今すぐやること</div>
         <ul class="check-list">
-          <li><div class="check-box checked"></div><span style="color:#999; text-decoration:line-through;">航空券＋ホテルの予約</span>（JTBで確定済 2026/6/14）</li>
+          <li><div class="check-box checked"></div><span style="color:#6b7684; text-decoration:line-through;">航空券＋ホテルの予約</span>（JTBで確定済 2026/6/14）</li>
           <li><div class="check-box" onclick="this.classList.toggle('checked')"></div>パスポート申請（全員分）</li>
           <li><div class="check-box" onclick="this.classList.toggle('checked')"></div><strong>JTBにパスポート番号を登録</strong>（4人分・未入力）</li>
           <li><div class="check-box" onclick="this.classList.toggle('checked')"></div><strong>Guam-CNMI ETA を申請</strong>（4人分）</li>
-          <li><div class="check-box"></div><strong>1/23 ゆうやけテラス</strong>（申込済み・手配中／4人分 $0・確定待ち）</li>
+          <li><div class="check-box" onclick="this.classList.toggle('checked')"></div><strong>1/23 ゆうやけテラス</strong>（申込済み・手配中／4人分 $0・確定待ち）</li>
           <li><div class="check-box" onclick="this.classList.toggle('checked')"></div><strong>1/21 スキューバカンパニー</strong>の予約（マリン全部乗せ）</li>
           <li><div class="check-box" onclick="this.classList.toggle('checked')"></div><strong>1/22 カレラ</strong>の予約（サンドキャッスル・金曜公演）</li>
           <li><div class="check-box" onclick="this.classList.toggle('checked')"></div>海外旅行保険の加入（t@bihoは出発3か月前から）</li>
@@ -839,44 +956,44 @@
 
     <!-- オプショナルツアー未予約の注意 -->
     <!-- オプショナルツアー手配状況 -->
-    <div style="max-width:900px; margin:35px auto 0; background:white; border-radius:16px; padding:28px; box-shadow:0 4px 20px rgba(0,105,148,0.12); border-top:4px solid var(--coral);">
-      <h3 style="font-size:1.05rem; font-weight:700; color:var(--dark); margin-bottom:6px;">🎫 オプショナルツアー 手配状況</h3>
-      <p style="font-size:0.82rem; color:#777; margin-bottom:18px;">JTBのツアー本体に含まれてるのは「充実のサポート」（LINE相談）だけ。アクティビティは別途手配が必要やで。</p>
+    <div class="info-panel">
+      <h3>🎫 オプショナルツアー 手配状況</h3>
+      <p class="lead">JTBのツアー本体に含まれてるのは「充実のサポート」（LINE相談）だけ。アクティビティは別途手配が必要やで。</p>
 
-      <div style="background:#fff8e1; border-radius:12px; padding:16px 18px; margin-bottom:14px; border-left:4px solid #f39c12;">
-        <strong style="font-size:0.9rem; color:#7f4f24;">🟡 申込済み・手配中（確定待ち） ── 1/23（土）ゆうやけテラスツアー at 恋人岬</strong>
-        <p style="font-size:0.82rem; color:#333; margin-top:6px; line-height:1.6;">
+      <div class="status-box" style="background:#fff8e1; border-left-color:#e08e0b;">
+        <strong style="color:#6b4211;">🟡 申込済み・手配中（確定待ち）<br>── 1/23（土）ゆうやけテラスツアー at 恋人岬</strong>
+        <p>
           16:45集合〜19:30頃（予定）／往復送迎・展望台入場料・ドリンク券2枚＆スナック込み<br>
-          <strong style="color:#7f4f24;">「見つかる！グアム！キャンペーン」特典を4人分 $0で申込済み。JTBの現在表示は「手配中」</strong><br>
-          <span style="color:#c0392b; font-size:0.78rem;">※ 正式成立は「手配済み／予約確定」への更新または確定メールの到着後。重複申込みはせず、案内を待つで</span><br>
-          <span style="color:#c0392b; font-size:0.78rem;">※ 取消はココ夏ッ通信側で別途手続きが必要。JTB本体をキャンセルしても自動では消えへんで</span>
+          <strong style="color:#6b4211;">「見つかる！グアム！キャンペーン」特典を4人分 $0で申込済み。JTBの現在表示は「手配中」</strong><br>
+          <span class="warn sub">※ 正式成立は「手配済み／予約確定」への更新または確定メールの到着後。重複申込みはせず、案内を待つで</span><br>
+          <span class="warn sub">※ 取消はココ夏ッ通信側で別途手続きが必要。JTB本体をキャンセルしても自動では消えへんで</span>
         </p>
       </div>
 
-      <div style="background:#fff8f0; border-radius:12px; padding:16px 18px; margin-bottom:14px; border-left:4px solid var(--sunset);">
-        <strong style="font-size:0.9rem;">🔲 未手配 ── 1/21（木）スキューバカンパニー マリンスポーツ</strong>
-        <p style="font-size:0.82rem; color:#555; margin-top:6px; line-height:1.7;">
+      <div class="status-box">
+        <strong>🔲 未手配 ── 1/21（木）スキューバカンパニー マリンスポーツ</strong>
+        <p>
           コース：<strong>イルカ＆ウミガメウォッチング＋オーシャンパーク＋パラセール</strong>（ランチなし）<br>
           12〜99歳 19,708円／6〜11歳 15,766円 ＝ <strong>4人で74,890円</strong>／所要 約5時間30分・8:45お迎え<br>
-          <span style="color:var(--palm); font-weight:700;">JTB売れ筋2位</span>の定番。パラセールは2人乗りで親子ペアOK🎈<br>
-          <span style="color:#c0392b;">⚠️ 6歳以上／未成年は18歳以上の同伴必須／水着着用で集合・バスタオル持参・濡れたまま送迎車はNG</span>
+          <span style="color:#1e5631; font-weight:700;">JTB売れ筋2位</span>の定番。パラセールは2人乗りで親子ペアOK🎈<br>
+          <span class="warn">⚠️ 6歳以上／未成年は18歳以上の同伴必須／水着着用で集合・バスタオル持参・濡れたまま送迎車はNG</span>
         </p>
       </div>
 
-      <div style="background:#fff8f0; border-radius:12px; padding:16px 18px; margin-bottom:14px; border-left:4px solid var(--sunset);">
-        <strong style="font-size:0.9rem;">🔲 未手配 ── 1/22（金）カレラ at サンドキャッスル</strong>
-        <p style="font-size:0.82rem; color:#555; margin-top:6px; line-height:1.7;">
+      <div class="status-box">
+        <strong>🔲 未手配 ── 1/22（金）カレラ at サンドキャッスル</strong>
+        <p>
           レギュラーショー：大人15,766円／6〜11歳 3,942円 ＝ <strong>4人で51,240円</strong><br>
           ドアオープン18:45／開演19:45／終演20:45（公演 約1時間）<br>
-          <span style="color:var(--palm); font-weight:700;">JTB売れ筋1位</span>。シルク・ドゥ・ソレイユ等のクリエイター製作の本格ステージ<br>
-          <span style="color:#c0392b;">⚠️ <strong>送迎なし</strong>（赤いシャトルバスで自力移動）／<strong>ビーチウェア不可</strong>／食事なし（夕食は別で済ませる）／美緒ちゃんは12歳から大人料金</span><br>
+          <span style="color:#1e5631; font-weight:700;">JTB売れ筋1位</span>。シルク・ドゥ・ソレイユ等のクリエイター製作の本格ステージ<br>
+          <span class="warn">⚠️ <strong>送迎なし</strong>（赤いシャトルバスで自力移動）／<strong>ビーチウェア不可</strong>／食事なし（夕食は別で済ませる）／美緒ちゃんは12歳から大人料金</span><br>
           🗓️ 月・火・木・金・土公演（<strong>日・水は休演</strong>）
         </p>
       </div>
 
-      <div style="background:#f5f5f5; border-radius:12px; padding:14px 18px; margin-bottom:14px; border-left:4px solid #bbb;">
-        <strong style="font-size:0.88rem; color:#666;">💭 検討したけど見送ったもの</strong>
-        <p style="font-size:0.8rem; color:#777; margin-top:5px; line-height:1.7;">
+      <div class="status-box" style="background:#f2f4f6; border-left-color:#9aa5b1;">
+        <strong style="color:#4a5560;">💭 検討したけど見送ったもの</strong>
+        <p style="color:#4a5560;">
           ・<strong>気軽に半日南部ツアー</strong>（4人18,920円）… 安くて売れ筋9位やけど、<strong>ガイドなし</strong>で6スポット中4つが砦・歴史系。子どもが退屈しそうなので見送り<br>
           ・<strong>オフロードアドベンチャー</strong>（4人39,954円）… <strong>バギー運転は18歳以上のみ</strong>で子どもは同乗のみ。40分で4万円はコスパ悪し<br>
           ・<strong>PICウォーターパーク</strong>（4人60,701円）… 子どもの満足度は最強やけど、1/21のマリンと water 系が重複。<strong>毎日催行やから当日の様子を見て追加も可能</strong>（※キャンセルは前日16時以降100%）<br>
@@ -884,14 +1001,14 @@
         </p>
       </div>
 
-      <div style="background:#fff3cd; border-radius:12px; padding:14px 18px; border-left:4px solid #f39c12;">
-        <strong style="font-size:0.88rem; color:#7f4f24;">⏰ 手配期限：2026/12/28（出発23日前）</strong>
-        <p style="font-size:0.8rem; color:#7f4f24; margin-top:5px; line-height:1.6;">これを過ぎると自分で手続きできんくなって、コンタクトボードからの問い合わせになるで。人気枠は先に埋まるから早めにな。</p>
+      <div class="status-box" style="background:#fff3cd; border-left-color:#e08e0b;">
+        <strong style="color:#6b4211;">⏰ 手配期限：2026/12/28（出発23日前）</strong>
+        <p style="color:#5f3a15;">これを過ぎると自分で手続きできんくなって、コンタクトボードからの問い合わせになるで。人気枠は先に埋まるから早めにな。</p>
       </div>
 
-      <div style="background:#ffe3e3; border-radius:12px; padding:14px 18px; margin-top:14px; border-left:4px solid #e74c3c;">
-        <strong style="font-size:0.88rem; color:#c0392b;">🚫 買わんでええもん（二重払い注意）</strong>
-        <p style="font-size:0.8rem; color:#7f4f24; margin-top:5px; line-height:1.7;">
+      <div class="status-box" style="background:#ffe9e9; border-left-color:#d64541; margin-bottom:0;">
+        <strong style="color:#a5281b;">🚫 買わんでええもん（二重払い注意）</strong>
+        <p style="color:#5a2b28;">
           ・<strong>空港送迎 往復（2,557円）</strong> → ツアーに込み済み<br>
           ・<strong>赤いシャトルバス乗り放題券（2,365円）</strong> → 特典で乗り放題（＋mobiも）<br>
           4人分やと約2万円の無駄になるとこやで。
@@ -900,46 +1017,46 @@
     </div>
 
     <!-- 余力があれば -->
-    <div style="max-width:900px; margin:20px auto 0; background:white; border-radius:16px; padding:24px 28px; box-shadow:0 4px 20px rgba(0,105,148,0.08);">
-      <h3 style="font-size:0.98rem; font-weight:700; color:var(--dark); margin-bottom:6px;">➕ 現地で「まだ遊び足りん！」となったら</h3>
-      <p style="font-size:0.8rem; color:#777; margin-bottom:12px;">1/24（日）の午前や、1/22の昼間に差し込める候補。当日の子どもの元気度を見て決めたらええで。</p>
-      <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:12px; font-size:0.82rem;">
-        <div style="background:#f0f9ff; border-radius:10px; padding:12px 14px;"><strong>🎢 PICグアム ウォーターパーク1日券</strong><br><span style="color:#666;">大人17,343円／子供(2-11歳)8,672円・9:00〜17:00<br><strong>毎日催行</strong>なので前日でも取れる可能性あり</span></div>
-        <div style="background:#f0f9ff; border-radius:10px; padding:12px 14px;"><strong>🪢 ジップライン</strong><br><span style="color:#666;">大人6,233円／子供(6-12歳)4,635円・約1.5時間<br>※ヒルトン内。タロフォフォの滝ちゃうで</span></div>
-        <div style="background:#f0f9ff; border-radius:10px; padding:12px 14px;"><strong>✈️ セスナ遊覧飛行</strong><br><span style="color:#666;">15,766円〜／上空からグアム一周</span></div>
-        <div style="background:#f0f9ff; border-radius:10px; padding:12px 14px;"><strong>🛒 デデド朝市</strong><br><span style="color:#666;">シャトル往復3,197円／<strong>土日の早朝のみ</strong>→1/24（日）の朝が唯一のチャンス</span></div>
+    <div class="info-panel" style="margin-top:20px; border-top-color:var(--sky);">
+      <h3>➕ 現地で「まだ遊び足りん！」となったら</h3>
+      <p class="lead">1/24（日）の午前や、1/22の昼間に差し込める候補。当日の子どもの元気度を見て決めたらええで。</p>
+      <div class="grid-cards">
+        <div><strong>🎢 PICグアム ウォーターパーク1日券</strong><br><span class="muted">大人17,343円／子供(2-11歳)8,672円・9:00〜17:00<br><strong>毎日催行</strong>なので前日でも取れる可能性あり</span></div>
+        <div><strong>🪢 ジップライン</strong><br><span class="muted">大人6,233円／子供(6-12歳)4,635円・約1.5時間<br>※ヒルトン内。タロフォフォの滝ちゃうで</span></div>
+        <div><strong>✈️ セスナ遊覧飛行</strong><br><span class="muted">15,766円〜／上空からグアム一周</span></div>
+        <div><strong>🛒 デデド朝市</strong><br><span class="muted">シャトル往復3,197円／<strong>土日の早朝のみ</strong>→1/24（日）の朝が唯一のチャンス</span></div>
       </div>
-      <p style="font-size:0.76rem; color:#999; margin-top:12px;">※ 表示は「〜円から」の最低価格。人数・コース・日付で変わるんで、予約画面で確定額を確認してな。</p>
+      <p class="fineprint">※ 表示は「〜円から」の最低価格。人数・コース・日付で変わるんで、予約画面で確定額を確認してな。</p>
     </div>
 
     <!-- ツアー特典 -->
-    <div style="max-width:900px; margin:35px auto 0; background:white; border-radius:16px; padding:28px; box-shadow:0 4px 20px rgba(0,105,148,0.12); border-top:4px solid var(--palm);">
-      <h3 style="font-size:1.05rem; font-weight:700; color:var(--dark); margin-bottom:6px;">🎁 このツアーに付いてくる特典（使わな損！）</h3>
-      <p style="font-size:0.82rem; color:#777; margin-bottom:16px;">ルックJTB＋ザ ツバキ タワー カメリアクラブルームの特典。現地交通費と食費がかなり浮くで。</p>
-      <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:14px;">
-        <div style="background:#f0f9ff; border-radius:12px; padding:14px 16px;">
-          <strong style="font-size:0.88rem;">🚌 赤いシャトルバス乗り放題</strong>
-          <p style="font-size:0.8rem; color:#555; margin-top:5px; line-height:1.5;">タモンシャトル北廻り・南廻り／ショッピングモールシャトルが滞在中乗り放題</p>
+    <div class="info-panel" style="border-top-color:var(--palm);">
+      <h3>🎁 このツアーに付いてくる特典（使わな損！）</h3>
+      <p class="lead">ルックJTB＋ザ ツバキ タワー カメリアクラブルームの特典。現地交通費と食費がかなり浮くで。</p>
+      <div class="grid-cards">
+        <div>
+          <strong>🚌 赤いシャトルバス乗り放題</strong>
+          <p>タモンシャトル北廻り・南廻り／ショッピングモールシャトルが滞在中乗り放題</p>
         </div>
-        <div style="background:#f0f9ff; border-radius:12px; padding:14px 16px;">
-          <strong style="font-size:0.88rem;">🚐 mobi 乗り放題</strong>
-          <p style="font-size:0.8rem; color:#555; margin-top:5px; line-height:1.5;">乗合型移動サービス。日本語アプリで配車。シャトルが走ってない場所にも行ける（乗車時に黄色のコンチャカード提示）</p>
+        <div>
+          <strong>🚐 mobi 乗り放題</strong>
+          <p>乗合型移動サービス。日本語アプリで配車。シャトルが走ってない場所にも行ける（乗車時に黄色のコンチャカード提示）</p>
         </div>
-        <div style="background:#fff8f0; border-radius:12px; padding:14px 16px;">
-          <strong style="font-size:0.88rem;">☕ リナラ クラブラウンジ利用可</strong>
-          <p style="font-size:0.8rem; color:#555; margin-top:5px; line-height:1.5;"><strong>朝食</strong>はラウンジ or ホテル内レストランで。ティータイム・カクテルタイムも利用OK</p>
+        <div style="background:#fff8f0;">
+          <strong>☕ リナラ クラブラウンジ利用可</strong>
+          <p><strong>朝食</strong>はラウンジ or ホテル内レストランで。ティータイム・カクテルタイムも利用OK</p>
         </div>
-        <div style="background:#fff8f0; border-radius:12px; padding:14px 16px;">
-          <strong style="font-size:0.88rem;">🍽️ レストラン30%割引クーポン</strong>
-          <p style="font-size:0.8rem; color:#555; margin-top:5px; line-height:1.5;">1部屋につき滞在中1回。「ミラノグリル」「カサオセアノ」「ヌヌバー」で使えるで</p>
+        <div style="background:#fff8f0;">
+          <strong>🍽️ レストラン30%割引クーポン</strong>
+          <p>1部屋につき滞在中1回。「ミラノグリル」「カサオセアノ」「ヌヌバー」で使えるで</p>
         </div>
-        <div style="background:#f0fff4; border-radius:12px; padding:14px 16px;">
-          <strong style="font-size:0.88rem;">🍺 ルックJTBハッピーアワー</strong>
-          <p style="font-size:0.8rem; color:#555; margin-top:5px; line-height:1.5;">滞在中毎日17:00〜18:00、ホテル内バーでドリンク（21歳以上対象）</p>
+        <div style="background:#f0fff4;">
+          <strong>🍺 ルックJTBハッピーアワー</strong>
+          <p>滞在中毎日17:00〜18:00、ホテル内バーでドリンク（21歳以上対象）</p>
         </div>
-        <div style="background:#f0fff4; border-radius:12px; padding:14px 16px;">
-          <strong style="font-size:0.88rem;">💧 ボトルウォーターサービス</strong>
-          <p style="font-size:0.8rem; color:#555; margin-top:5px; line-height:1.5;">プールカウンターでルックJTBパスを見せると家族分もらえる。滞在中何度でもOK</p>
+        <div style="background:#f0fff4;">
+          <strong>💧 ボトルウォーターサービス</strong>
+          <p>プールカウンターでルックJTBパスを見せると家族分もらえる。滞在中何度でもOK</p>
         </div>
       </div>
     </div>
@@ -949,7 +1066,7 @@
 <!-- ===== ヒント ===== -->
 <div class="tips-section">
   <div class="section">
-    <div class="section-title">💡 グアム旅行のコツ</div>
+    <h2 class="section-title">💡 グアム旅行のコツ</h2>
     <div class="tips-grid">
       <div class="tip-card">
         <div class="t-emoji">🌡️</div>
@@ -989,7 +1106,7 @@
 <div class="footer">
   <div class="footer-title">✨ Have a Wonderful Trip! ✨</div>
   <p>家族4人の最初の海外旅行、最高の思い出になりますように 🌺</p>
-  <p style="margin-top:8px; font-size:0.75rem;">GUAM 2027 ｜ 1.19前泊 → 1.20出発 → 1.24帰宅 ｜ Family of 4</p>
+  <p style="margin-top:10px; font-size:0.85rem; color:rgba(255,255,255,0.75);">GUAM 2027 ｜ 1.19前泊 → 1.20出発 → 1.24帰宅 ｜ Family of 4</p>
 </div>
 
 </body>
