@@ -476,8 +476,113 @@
   }
   .transport-strip .t-icon { font-size: 1.3rem; }
 
+  /* ===== 見やすさ調整（幅を広げて情報を整理） ===== */
+  .section { max-width: 1160px; }
+  .check-grid { max-width: 1160px; }
+  .tips-grid { max-width: 1160px; }
+  .budget-grid { max-width: 1000px; }
+  .alert-box { max-width: 1160px; }
+  .wide-block { max-width: 1160px !important; }
+
+  .summary-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+    gap: 14px;
+    margin-bottom: 30px;
+  }
+  .summary-item {
+    background: white;
+    border-radius: 14px;
+    padding: 14px 18px;
+    display: flex;
+    gap: 12px;
+    align-items: center;
+    box-shadow: 0 2px 12px rgba(0,105,148,0.08);
+    font-size: 0.9rem;
+    line-height: 1.5;
+  }
+  .summary-item .s-icon { font-size: 1.6rem; }
+  .summary-item .s-label { font-size: 0.72rem; color: #888; letter-spacing: 1px; }
+
+  .day-card { padding: 32px 36px; grid-template-columns: 80px 1fr; }
+  .day-card:hover { transform: none; }
+  .day0 { border-left-color: #9b59b6 !important; }
+  .day0 .day-label, .day0 .day-date { color: #9b59b6; }
+  .day-title { font-size: 1.3rem; display: flex; flex-wrap: wrap; align-items: center; gap: 10px; }
+  .status { font-size: 0.75rem; font-weight: 700; padding: 3px 12px; border-radius: 20px; }
+  .status.ok { background: #e8f5e9; color: #1e5631; }
+  .status.todo { background: #fff3e0; color: #b35c00; }
+  .status.wait { background: #fff8e1; color: #7f4f24; }
+
+  .day-cols {
+    display: grid;
+    grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr);
+    gap: 28px;
+    margin-top: 8px;
+  }
+  .timeline { list-style: none; display: flex; flex-direction: column; }
+  .timeline li {
+    display: grid;
+    grid-template-columns: 56px 1fr;
+    gap: 12px;
+    padding: 7px 0;
+    border-bottom: 1px dashed #e3eef3;
+    font-size: 0.95rem;
+    line-height: 1.55;
+    color: #333;
+  }
+  .timeline li:last-child { border-bottom: none; }
+  .timeline .t { font-weight: 700; color: var(--ocean); font-variant-numeric: tabular-nums; }
+  .timeline .sub { font-size: 0.82rem; color: #777; }
+  .day-side { display: flex; flex-direction: column; gap: 10px; }
+  .side-box { border-radius: 12px; padding: 12px 14px; font-size: 0.85rem; line-height: 1.6; }
+  .side-box.info { background: #f0f9ff; color: #1a4a63; }
+  .side-box.tip { background: #f4f9f4; color: #1e5631; }
+  .side-box.warn { background: #fff4f2; color: #8a2c1d; }
+  .side-box.wait { background: #fff8e1; color: #7f4f24; }
+  .side-box.money { background: #fffbea; color: #6b5300; }
+
+  details.memo { margin-top: 16px; border-top: 1px solid #eef3f5; padding-top: 10px; }
+  details.memo summary { cursor: pointer; font-size: 0.85rem; color: var(--ocean); font-weight: 500; }
+  details.memo ul { margin: 10px 0 0 20px; font-size: 0.84rem; color: #555; line-height: 1.8; }
+
+  /* チェックリスト周り */
+  .block-title { font-size: 1.05rem; color: #c0392b; margin-bottom: 14px; }
+  .todo-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px; margin-bottom: 18px; }
+  .todo-card { background: white; border-radius: 14px; padding: 18px 20px; border-top: 4px solid #e74c3c; box-shadow: 0 4px 16px rgba(231,76,60,0.1); }
+  .todo-head { font-weight: 700; font-size: 1rem; margin-bottom: 8px; color: var(--dark); }
+  .todo-card p { font-size: 0.88rem; color: #444; line-height: 1.65; }
+  .todo-card .how { margin-top: 8px; color: #c0392b; font-weight: 500; }
+  .todo-card a { color: #c0392b; font-weight: 700; }
+  .note-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 16px; margin-bottom: 28px; }
+  .note-box { background: #fffbea; border-radius: 12px; padding: 14px 18px; font-size: 0.86rem; color: #5a4a1f; line-height: 1.65; }
+  .note-box.warn { background: #fff4f2; color: #7a2a1d; }
+  .note-box p { margin-top: 4px; }
+  details.memo.plain { border-top: none; padding-top: 0; margin-top: 6px; }
+  .check-list .done { color: #999; text-decoration: line-through; }
+
+  .panel { max-width: 1160px; margin: 30px auto 0; background: white; border-radius: 16px; padding: 26px 30px; box-shadow: 0 4px 20px rgba(0,105,148,0.1); border-top: 4px solid var(--ocean); }
+  .panel-title { font-size: 1.1rem; font-weight: 700; color: var(--dark); margin-bottom: 14px; }
+  .panel-lead { font-size: 0.86rem; color: #666; margin: -6px 0 14px; }
+  .panel-foot { font-size: 0.78rem; color: #999; margin-top: 12px; }
+  .tour-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 14px; }
+  .tour-card { border-radius: 12px; padding: 16px 18px; font-size: 0.86rem; line-height: 1.6; color: #444; }
+  .tour-card.ok { background: #e8f5e9; }
+  .tour-card.todo { background: #fff3e0; }
+  .tour-card.wait { background: #fff8e1; }
+  .tour-status { font-size: 0.78rem; font-weight: 700; margin-bottom: 4px; }
+  .tour-name { font-size: 1rem; font-weight: 700; color: var(--dark); margin-bottom: 6px; }
+  .tour-card .price { margin-top: 6px; font-weight: 700; color: var(--dark); }
+  .mini-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 12px; }
+  .mini-card { background: #f0f9ff; border-radius: 10px; padding: 12px 14px; font-size: 0.86rem; display: flex; flex-direction: column; gap: 4px; }
+  .mini-card span { color: #666; font-size: 0.82rem; }
+
   /* responsive */
+  @media (max-width: 860px) {
+    .day-cols { grid-template-columns: 1fr; gap: 16px; }
+  }
   @media (max-width: 600px) {
+    .day-card { padding: 22px 18px; }
     .day-card { grid-template-columns: 1fr; }
     .cover-family { flex-wrap: wrap; justify-content: center; }
     .sun { width: 70px; height: 70px; top: 40px; right: 30px; }
@@ -530,53 +635,60 @@
   <div class="section">
     <div class="section-title">🗓 旅のスケジュール</div>
 
-    <!-- 移動情報 -->
-    <div class="transport-strip">
-      <span class="t-icon">🏨</span>
-      <span><strong>前日（1月19日）に成田前泊！</strong>　東横INN成田空港（新館）がおすすめ<br>
-      相模大野 → 新宿 → 成田空港（所要 約2時間）｜JAL <strong>JL0941便</strong> 成田10:00発 → グアム<strong>14:45</strong>着｜宿泊：<strong>ザ ツバキ タワー</strong>（カメリアクラブルーム オーシャンビュー ツインベッドルーム／ラウンジアクセス込／1部屋4人）｜空港⇔ホテル送迎付き｜<strong>✅ JTB予約確定済み（2026/6/14）</strong></span>
+    <!-- 旅の基本情報 -->
+    <div class="summary-grid">
+      <div class="summary-item"><span class="s-icon">✈️</span><div><div class="s-label">行き</div><strong>JL0941</strong> 成田 10:00 → グアム 14:45</div></div>
+      <div class="summary-item"><span class="s-icon">🛬</span><div><div class="s-label">帰り</div><strong>JL0942</strong> グアム 16:45 → 成田 19:35</div></div>
+      <div class="summary-item"><span class="s-icon">🏨</span><div><div class="s-label">ホテル（4泊）</div><strong>ザ ツバキ タワー</strong><br>カメリアクラブ オーシャンビュー</div></div>
+      <div class="summary-item"><span class="s-icon">✅</span><div><div class="s-label">JTB予約</div>確定済み（座席指定・送迎込み）</div></div>
     </div>
 
     <!-- DAY 0 前泊 -->
-    <div class="day-card" style="margin-top:30px; border-left-color: #9b59b6;">
+    <div class="day-card day0">
       <div class="day-num">
-        <div class="day-label" style="color:#9b59b6;">0</div>
+        <div class="day-label">0</div>
         <div class="day-text">前泊</div>
       </div>
-      <div>
-        <div class="day-date" style="color:#9b59b6;">📅 1月19日（火）前日</div>
+      <div class="day-body">
+        <div class="day-date">📅 1月19日（火）前日</div>
         <div class="day-title">🏨 成田に前泊でゆったり準備！</div>
-        <ul class="day-items">
-          <li>相模大野駅 → 新宿 → 成田空港（所要約2時間）</li>
-          <li>東横INN成田空港（新館）チェックイン🛏️</li>
-          <li>館内コンビニ（ローソン）で翌朝の飲み物・お菓子を調達</li>
-          <li>朝食無料プランで翌朝しっかり食べて出発！</li>
-          <li>早めに就寝して体力温存💤 いよいよ明日はグアムへ！</li>
-        </ul>
+        <div class="day-cols">
+          <ul class="timeline">
+            <li><span class="t">夕方</span><div>相模大野 → 新宿 → 成田空港（約2時間）</div></li>
+            <li><span class="t">夜</span><div>東横INN成田空港（新館）チェックイン🛏️</div></li>
+            <li><span class="t"></span><div>館内のローソンで翌朝の飲み物・お菓子を調達</div></li>
+            <li><span class="t"></span><div>早めに寝て体力温存💤</div></li>
+          </ul>
+          <aside class="day-side">
+            <div class="side-box tip">💡 朝食無料プランで、翌朝しっかり食べてから出発</div>
+          </aside>
+        </div>
       </div>
     </div>
 
     <!-- DAY 1 -->
-    <div class="day-card" style="margin-top:10px;">
+    <div class="day-card">
       <div class="day-num">
         <div class="day-label">1</div>
         <div class="day-text">DAY</div>
       </div>
-      <div>
+      <div class="day-body">
         <div class="day-date">📅 1月20日（水）</div>
         <div class="day-title">✈️ 出発！グアムへ Let's Go！</div>
-        <ul class="day-items">
-          <li>7:30 ホテルで朝食🍳 → 8:00 無料シャトルバスで成田空港へ</li>
-          <li>8:15 成田空港 第2ターミナル着・チェックイン＆手荷物預け</li>
-          <li>保安検査・出国審査をゆっくり済ませる（免税店も楽しもう！）</li>
-          <li>10:00 ✈️ JAL <strong>JL0941便</strong> 成田出発！（所要3時間45分・機内食あり）<span class="highlight">座席指定済み</span></li>
-          <li>14:45 🌴 グアム国際空港 到着！</li>
-          <li>到着出口を出て<strong>右側のJTBカウンター</strong>へ 🚐【混乗】空港→ホテル送迎（ツアーに込み・ドライバーは英語のみ）</li>
-          <li>15:30 🏨 <strong>ザ ツバキ タワー</strong> チェックイン<span class="highlight">全室オーシャンビュー</span></li>
-          <li>16:30 バルコニーから海と夕日を眺めながら少し休憩・荷ほどき🌅</li>
-          <li>17:30〜21:00 🌺 チャモロビレッジ・ナイトマーケット<span class="highlight">水曜限定！到着日の夜に</span></li>
-          <li>チャモロ料理・屋台・ダンス・生演奏を満喫🎉 夕食は屋台グルメで！赤いシャトルバスで行けて便利</li>
-        </ul>
+        <div class="day-cols">
+          <ul class="timeline">
+            <li><span class="t">7:30</span><div>ホテルで朝食🍳 → 8:00 無料シャトルで空港へ</div></li>
+            <li><span class="t">8:15</span><div>成田 第2ターミナル着・チェックイン</div></li>
+            <li><span class="t">10:00</span><div>✈️ <strong>JL0941便</strong> 出発（約3時間45分）</div></li>
+            <li><span class="t">14:45</span><div>🌴 グアム到着 → 送迎車でホテルへ</div></li>
+            <li><span class="t">15:30</span><div>🏨 <strong>ザ ツバキ タワー</strong> チェックイン・休憩</div></li>
+            <li><span class="t">17:30</span><div>🌺 <strong>チャモロビレッジ・ナイトマーケット</strong><span class="highlight">水曜だけ！</span><br><span class="sub">夕食は屋台グルメで。赤いシャトルバスで行ける</span></div></li>
+          </ul>
+          <aside class="day-side">
+            <div class="side-box info">🚐 <strong>空港送迎</strong><br>到着出口を出て<strong>右側のJTBカウンター</strong>へ（ドライバーは英語のみ）</div>
+            <div class="side-box tip">💺 座席指定済み・機内食あり</div>
+          </aside>
+        </div>
       </div>
     </div>
 
@@ -586,22 +698,36 @@
         <div class="day-label">2</div>
         <div class="day-text">DAY</div>
       </div>
-      <div>
+      <div class="day-body">
         <div class="day-date">📅 1月21日（木）</div>
-        <div class="day-title">🌊 海の全部乗せデー</div>
-        <ul class="day-items">
-          <li>7:30 ラウンジで朝食☀️（カメリアクラブルーム特典）<strong>水着を着て出発</strong>・バスタオル持参！</li>
-          <li>8:45 🚐 ホテルお迎え → <strong>スキューバカンパニー マリンスポーツ</strong><span class="highlight">✅ 予約確定（最終確認済）</span><br>お迎え場所：<strong>ザ ツバキ タワーのロビー、フロント近くの入口付近</strong>で待つ（混乗バス）<br><span style="color:#c0392b;">※当日の最終的な集合時間・場所は、現地でホテルチェックイン時にもらう案内書面で再確認してな</span></li>
-          <li>🐬 <strong>イルカ＆ウミガメウォッチング</strong> → 🏝️ <strong>オーシャンパーク</strong>（シュノーケリング・水上トランポリン・水上マット・ボート滑り台／約20〜30分）→ 🪂 <strong>パラセール</strong></li>
-          <li><strong>パラセールは2人乗り</strong>！親子ペアで空へ🎈（6歳以上OK／体重22kg以下は保護者と一緒に）<br><span style="color:#666;">※メガネは海に落とす危険があるので外すのがおすすめ。写真は家族同士で撮り合う形</span></li>
-          <li>14:15頃 🏨 ホテル帰着（所要 約5時間30分）<br><span style="color:#c0392b;">⚠️ <strong>昼食は付いてへん</strong>！帰りが14:15頃なので、軽食やおにぎり・お菓子を持っていくのがおすすめ</span></li>
-          <li>15:00 🏊 プールでのんびり or 部屋で休憩（ガッツリ遊んだあとやからここは無理せんとこ）</li>
-          <li>18:30 🍽️ 夕食：ホテル内「TSUBAKI PRIME」で豪華ステーキ＆シーフード<span class="highlight">贅沢ディナー！</span></li>
-        </ul>
-        <div style="background:#e8f5e9; border-left:3px solid var(--palm); border-radius:8px; padding:10px 14px; margin-top:12px; font-size:0.82rem; color:#1e5631;">
-          💡 「イルカ＆ウミガメ」と「パラセーリング」を別々の日に入れるより、<strong>全部入りプラン1本のほうが約800円安い</strong>と判明。1日にまとめたことで1/22がまるっと空いたで🎉<br>
-          <strong>✅ 2026/9/20 JTBで購入・9/23 最終確認済み</strong><br>4人合計 78,242円（12歳以上20,590円×3／6〜11歳16,472円×1）→ <strong>ポイント1,500円分を使って支払いは76,742円</strong>。※美緒ちゃんは12歳なので大人料金
+        <div class="day-title">🌊 海の全部乗せデー <span class="status ok">✅ 予約確定</span></div>
+        <div class="day-cols">
+          <ul class="timeline">
+            <li><span class="t">7:30</span><div>ラウンジで朝食☀️ <strong>水着を着て</strong>準備</div></li>
+            <li><span class="t">8:45</span><div>🚐 ホテルお迎え（<strong>スキューバカンパニー</strong>）</div></li>
+            <li><span class="t"></span><div>🐬 イルカ＆ウミガメウォッチング</div></li>
+            <li><span class="t"></span><div>🏝️ オーシャンパーク（シュノーケル・水上トランポリンなど）</div></li>
+            <li><span class="t"></span><div>🪂 パラセール（2人乗り・親子ペアで）</div></li>
+            <li><span class="t">14:15</span><div>🏨 ホテル着 → プール or 部屋でひと休み</div></li>
+            <li><span class="t">18:30</span><div>🍽️ ホテル内「TSUBAKI PRIME」でステーキ＆シーフード</div></li>
+          </ul>
+          <aside class="day-side">
+            <div class="side-box info">📍 <strong>お迎え場所</strong><br>ロビーの<strong>フロント近くの入口</strong>あたりで待つ</div>
+            <div class="side-box warn">⚠️ <strong>昼ごはんなし</strong>→ 軽食を持参<br>🧺 バスタオル持参／メガネは外す</div>
+            <div class="side-box money">💴 4人 78,242円（ポイント利用で支払い76,742円）</div>
+          </aside>
         </div>
+        <details class="memo">
+          <summary>くわしく見る（料金の内訳・条件・決めた理由）</summary>
+          <ul>
+            <li>12歳以上 20,590円×3人／6〜11歳 16,472円×1人（美緒ちゃんは12歳なので大人料金）</li>
+            <li>パラセールは6歳以上OK。体重22kg以下は保護者と一緒に。写真は家族同士で撮り合う</li>
+            <li>16歳未満は保護者の付き添いが必要／当日の飲酒NG</li>
+            <li>キャンセル料：3日前の17時から50%、前々日の17時から100%</li>
+            <li>集合時間・場所は、現地のホテルでもらう案内書面でも再確認</li>
+            <li>💡 別々に申し込むより「全部入りプラン」1本のほうが安く、1/22をまるっと空けられた</li>
+          </ul>
+        </details>
       </div>
     </div>
 
@@ -611,28 +737,37 @@
         <div class="day-label">3</div>
         <div class="day-text">DAY</div>
       </div>
-      <div>
+      <div class="day-body">
         <div class="day-date">📅 1月22日（金）</div>
-        <div class="day-title">🎠 遊んで買って、夜はショーデー</div>
-        <ul class="day-items">
-          <li>8:00 ラウンジで朝食🍳 前日たっぷり遊んだから今日はゆっくりめに</li>
-          <li>9:30〜11:30 🏊 <strong>ザ ツバキ タワーのプールで遊ぶ</strong>（ホテルのプールやから無料）</li>
-          <li>12:00 🍔 <strong>マイクロネシアモール</strong>でランチ（フードコートで気軽に）</li>
-          <li>13:00〜15:00 🎠 <strong>モール内の屋内遊園地＆ゲームセンターで子どもタイム</strong><span class="highlight">ここが本日のメイン</span><br>入場無料・乗り物は都度払い。映画館もあるで</li>
-          <li>15:30〜16:15 🛍️ DFSギャラリアを<strong>45分だけ</strong>サッと見る<br><span style="color:#666;">※ハイブランド中心で子どもは退屈するんで短時間で切り上げるのがコツ</span></li>
-          <li>16:30 🛒 <strong>Kマート</strong>でお土産のお菓子をまとめ買い🍫<span class="highlight">バラマキ土産はここが最強</span></li>
-          <li>17:00 🏨 ホテルに戻ってシャワー・着替え<br><span style="color:#c0392b;">⚠️ カレラは<strong>ビーチウェア不可</strong>（カジュアル〜セミフォーマル）。冷房強いので薄手の上着も持参</span></li>
-          <li>17:45 🍽️ <strong>早めの夕食</strong>：本格チャモロ料理レストランで島の味を堪能</li>
-          <li>18:45 🚌 <strong>サンドキャッスル</strong>へ（<span style="color:#c0392b;">送迎なし</span>・赤いシャトルバスで移動）ドアオープン</li>
-          <li>19:45〜20:45 🎭 <strong>カレラ・不思議な航海と冒険の旅</strong><span class="highlight">JTB売れ筋1位！</span><br>
-          シルク・ドゥ・ソレイユ等のクリエイターが製作した本格ステージ。ファイヤーダンス＆アクロバット＆生演奏。<strong>セリフが分からんでも楽しめる</strong>タイプのショーやで</li>
-          <li>21:00頃 🏨 ホテル帰着</li>
-        </ul>
-        <div style="background:#e8f5e9; border-left:3px solid var(--palm); border-radius:8px; padding:10px 14px; margin-top:12px; font-size:0.82rem; color:#1e5631;">
-          💡 当初は「タロフォフォの滝＋DFSで2時間半のショッピング」やったけど、<strong>子どもが退屈する</strong>と判断して組み替え。買い物は1時間ちょいに圧縮して、<strong>プール・遊園地・ショー</strong>で子ども中心の一日にしたで。<br>
-          <strong>カレラ 4人合計 51,240円</strong>（大人15,766円×3／6〜11歳3,942円×1）※美緒ちゃんは12歳から大人料金<br>
-          🗓️ カレラは<strong>月・火・木・金・土</strong>公演（日・水は休演）→ 1/22は金曜なので催行日
+        <div class="day-title">🎠 遊んで買って、夜はショーデー <span class="status todo">🔲 カレラ未予約</span></div>
+        <div class="day-cols">
+          <ul class="timeline">
+            <li><span class="t">8:00</span><div>ラウンジで朝食🍳 今日はゆっくりめ</div></li>
+            <li><span class="t">9:30</span><div>🏊 ホテルのプールで遊ぶ</div></li>
+            <li><span class="t">12:00</span><div>🍔 <strong>マイクロネシアモール</strong>でランチ</div></li>
+            <li><span class="t">13:00</span><div>🎠 モール内の屋内遊園地・ゲームセンター<span class="highlight">今日のメイン</span></div></li>
+            <li><span class="t">15:30</span><div>🛍️ DFSを45分だけサッと見る</div></li>
+            <li><span class="t">16:30</span><div>🛒 <strong>Kマート</strong>でお菓子のお土産まとめ買い</div></li>
+            <li><span class="t">17:00</span><div>🏨 ホテルでシャワー・着替え</div></li>
+            <li><span class="t">17:45</span><div>🍽️ チャモロ料理で早めの夕食</div></li>
+            <li><span class="t">19:45</span><div>🎭 <strong>カレラ</strong>（サンドキャッスル・約1時間）</div></li>
+            <li><span class="t">21:00</span><div>🏨 ホテル着</div></li>
+          </ul>
+          <aside class="day-side">
+            <div class="side-box warn">⚠️ <strong>カレラは送迎なし</strong>→ 赤いシャトルで移動（18:45開場）</div>
+            <div class="side-box warn">👕 <strong>ビーチウェア不可</strong>／冷房が強いので上着を持参</div>
+            <div class="side-box money">💴 カレラ 4人 51,240円（予定）</div>
+          </aside>
         </div>
+        <details class="memo">
+          <summary>くわしく見る（料金・公演日・決めた理由）</summary>
+          <ul>
+            <li>カレラ：大人15,766円×3人／6〜11歳3,942円×1人</li>
+            <li>公演は月・火・木・金・土（日・水は休み）→ 1/22は金曜なのでOK</li>
+            <li>セリフが分からなくても楽しめる、ファイヤーダンス＆アクロバットのショー</li>
+            <li>💡 当初の「滝＋2時間半の買い物」は子どもが退屈しそうなので、プール・遊園地・ショー中心に変更</li>
+          </ul>
+        </details>
       </div>
     </div>
 
@@ -642,23 +777,31 @@
         <div class="day-label">4</div>
         <div class="day-text">DAY</div>
       </div>
-      <div>
+      <div class="day-body">
         <div class="day-date">📅 1月23日（土）</div>
-        <div class="day-title">🌅 恋人岬でサンセット観賞デー</div>
-        <ul class="day-items">
-          <li>8:00 ホテルのバルコニーでゆっくり朝食☀️ 最高のオーシャンビューを満喫</li>
-          <li>10:00 ラッテストーン公園（グアムの歴史スポット・チャモロ文化にふれる）</li>
-          <li>12:00 🍴 タモン地区の人気レストランでランチ</li>
-          <li>14:00〜<strong>15:45</strong> 🏊 ザ ツバキ タワーのプールでまったりリゾート気分<br><span style="color:#c0392b;">※15:45にはあがって着替え、16:15ごろホテルを出発するで</span></li>
-          <li>16:45〜19:30ごろ 🌅 <strong>ゆうやけテラスツアー at 恋人岬</strong><span class="highlight">🟡申込済み（手配中）・$0／確定待ち</span><br>
-          恋人岬の展望台から黄金色の夕暮れを観賞📸 テラスでドリンク2杯＆スナック付き。往復送迎・展望台入場料込み<br>
-          <span style="color:#c0392b;">⚠️ 現在は手配中。確定メールで集合場所・開始／終了時刻を要確認（デュシタニグアムリゾート発の場合は赤いシャトルバスで移動）</span></li>
-          <li>20:15〜20:30 🥩 最終夜は豪華ディナー！高級ステーキ or シーフードで締め🦞</li>
-        </ul>
-        <div style="background:#e8f5e9; border-left:3px solid var(--palm); border-radius:8px; padding:10px 14px; margin-top:12px; font-size:0.82rem; color:#1e5631;">
-          💡 当初は「午前に恋人岬 → 夕方にサンセットクルーズ」の2本立てやったけど、<strong>サンセットクルーズ（BIGサンセットディナークルーズ）は月・木しか催行してへん</strong>ことが判明。1/23は土曜で運休やった。<br>
-          代わりに<strong>恋人岬と夕日を1本にまとめた「ゆうやけテラスツアー」</strong>に変更。キャンペーン特典を<strong>4人分 $0で申込済み</strong>やけど、現在は手配中・確定待ちやで。
+        <div class="day-title">🌅 恋人岬でサンセット観賞デー <span class="status wait">🟡 確定待ち</span></div>
+        <div class="day-cols">
+          <ul class="timeline">
+            <li><span class="t">8:00</span><div>バルコニーでゆっくり朝食☀️</div></li>
+            <li><span class="t">10:00</span><div>ラッテストーン公園（チャモロ文化にふれる）</div></li>
+            <li><span class="t">12:00</span><div>🍴 タモン地区でランチ</div></li>
+            <li><span class="t">14:00</span><div>🏊 ホテルのプールでまったり（15:45にあがる）</div></li>
+            <li><span class="t">16:45</span><div>🌅 <strong>ゆうやけテラスツアー at 恋人岬</strong><br><span class="sub">展望台から夕日を観賞・ドリンク2杯＆スナック付き</span></div></li>
+            <li><span class="t">20:15</span><div>🥩 最終夜は豪華ディナー🦞</div></li>
+          </ul>
+          <aside class="day-side">
+            <div class="side-box wait">🟡 <strong>申込済み・手配中</strong><br>キャンペーン特典で4人分 $0。確定メール待ち</div>
+            <div class="side-box warn">⚠️ 集合場所・時間は確定メールで確認</div>
+          </aside>
         </div>
+        <details class="memo">
+          <summary>くわしく見る（決めた理由）</summary>
+          <ul>
+            <li>往復送迎・展望台入場料込み</li>
+            <li>💡 サンセットクルーズは月・木しか運航しておらず、土曜はNG → 恋人岬と夕日を1本にまとめたこのツアーに変更</li>
+            <li>デュシタニ発の場合は赤いシャトルバスで移動</li>
+          </ul>
+        </details>
       </div>
     </div>
 
@@ -668,21 +811,25 @@
         <div class="day-label">5</div>
         <div class="day-text">DAY</div>
       </div>
-      <div>
+      <div class="day-body">
         <div class="day-date">📅 1月24日（日）</div>
         <div class="day-title">🏠 帰国日 〜最後のグアムを満喫！〜</div>
-        <ul class="day-items">
-          <li>8:00 ホテルで朝食🍳 荷物をまとめる・最後のバルコニービューを目に焼きつけて</li>
-          <li>11:00 🏨 ザ ツバキ タワー チェックアウト（フロントに荷物を無料で預ける！）</li>
-          <li>11:30〜13:00 身軽にDFS or タモン地区で最後のお土産＆ランチ🛍️<br><span style="color:#c0392b;">⚠️ 日曜は「タモン・ナイトマーケット」のため、ホテルロード北行き（ニッコー方面）が<strong>朝7時から通行止め</strong>。赤いシャトルバスもルートが変わるので、時刻表を確認してな</span></li>
-          <li>13:00 ホテルに戻って荷物をピックアップ</li>
-          <li>13:30頃 🚐【<strong>専用車</strong>】ホテル→空港のプライベート送迎（ツアーに込み・16:30〜19:00発便対応）</li>
-          <li><strong>16:45</strong> ✈️ JAL <strong>JL0942便</strong> グアム出発！（所要3時間50分・機内食あり）<span class="highlight">座席指定済み</span></li>
-          <li><strong>19:35</strong> 🗾 成田空港 到着！入国審査・荷物受け取り</li>
-          <li>20:30頃 成田エクスプレスで新宿へ（約80分・座席指定必須！）</li>
-          <li>21:50頃 新宿着 → 小田急で相模大野へ</li>
-          <li>22:30頃 🏡 相模大野 到着！おかえり〜！家族4人最高の旅でした🌺</li>
-        </ul>
+        <div class="day-cols">
+          <ul class="timeline">
+            <li><span class="t">8:00</span><div>朝食🍳 荷物をまとめる</div></li>
+            <li><span class="t">11:00</span><div>🏨 チェックアウト（荷物はフロントに預ける）</div></li>
+            <li><span class="t">11:30</span><div>🛍️ 最後のお土産＆ランチ</div></li>
+            <li><span class="t">13:30</span><div>🚐 専用車で空港へ（ツアーに込み）</div></li>
+            <li><span class="t">16:45</span><div>✈️ <strong>JL0942便</strong> 出発</div></li>
+            <li><span class="t">19:35</span><div>🗾 成田到着</div></li>
+            <li><span class="t">20:30</span><div>成田エクスプレスで新宿へ（座席指定必須）</div></li>
+            <li><span class="t">22:30</span><div>🏡 相模大野 到着！おかえり〜🌺</div></li>
+          </ul>
+          <aside class="day-side">
+            <div class="side-box warn">⚠️ <strong>日曜は道路規制あり</strong><br>ナイトマーケットのため、ホテルロード北行きが朝7時から通行止め。赤いシャトルもルート変更</div>
+            <div class="side-box tip">💺 座席指定済み・機内食あり</div>
+          </aside>
+        </div>
       </div>
     </div>
 
@@ -729,7 +876,7 @@
     </div>
   </div>
 
-  <div style="max-width:700px; margin:30px auto 0; background:rgba(255,255,255,0.1); border:1px solid rgba(255,255,255,0.25); border-radius:16px; padding:22px 25px;">
+  <div style="max-width:1000px; margin:30px auto 0; background:rgba(255,255,255,0.1); border:1px solid rgba(255,255,255,0.25); border-radius:16px; padding:22px 25px;">
     <h3 style="color:#FFD700; font-size:1rem; margin-bottom:12px;">💳 支払いスケジュールの注意</h3>
     <ul style="font-size:0.85rem; color:rgba(255,255,255,0.9); line-height:1.8; margin-left:18px;">
       <li>申込金 <strong style="color:#FFD700;">180,340円</strong> は支払い済み。<strong style="color:#FFD700;">残り753,140円は 2026/12/29 にクレジットカードから自動で引き落とし</strong>されるで。</li>
@@ -748,49 +895,42 @@
   <div class="section">
     <div class="section-title">📋 出発前チェックリスト</div>
 
-    <!-- JTB予約からの要対応 -->
-    <div class="alert-box" style="background:linear-gradient(135deg,#ffe3e3,#ffc9c9); border-color:#e74c3c;">
-      <div class="alert-icon">🚨</div>
-      <div class="alert-content">
-        <h3>JTBの予約明細から見つかった「要対応」3つ</h3>
-        <ul style="margin-top:8px;">
-          <li style="margin-bottom:10px;"><strong>① パスポート番号が未入力（4人全員）</strong><br>
-          JTBの予約明細に「パスポート番号が未入力です」と赤字で出てるで。米国のセキュア・フライト・プログラムで必須やから、<strong>入れんとeチケットが発行されへん</strong>。パスポートを取得したら、たびページの「お客様情報確認・変更」から4人分登録してな。</li>
-          <li style="margin-bottom:10px;"><strong>② 残金の自動引き落としが2026年12月下旬にある</strong><br>
-          <strong>2026/12/29 に残り753,140円</strong>がカードから自動で引き落とされるで（申込金180,340円は支払い済み）。<strong>年末にまとまった金額が一発で落ちる</strong>ので、カードの利用限度額に余裕があるか12月中に確認を。</li>
-          <li><strong>③ Guam-CNMI ETA（電子渡航認証）の申請</strong><br>
-          パスポートとは<strong>別モノ</strong>やで！グアム入国にはオンライン申請が必須（有効なESTAを持ってる場合は不要）。<br>
-          申請サイト → <a href="https://g-cnmi-eta.cbp.dhs.gov/" target="_blank" rel="noopener" style="color:#c0392b; font-weight:700;">g-cnmi-eta.cbp.dhs.gov</a></li>
-        </ul>
+    <!-- 要対応 -->
+    <h3 class="block-title">🚨 JTBの予約明細から見つかった「要対応」</h3>
+    <div class="todo-grid">
+      <div class="todo-card red">
+        <div class="todo-head">① パスポート番号の登録</div>
+        <p>4人とも<strong>未入力</strong>。入れないと<strong>航空券（eチケット）が発行されない</strong>。</p>
+        <p class="how">👉 たびページの「お客様情報確認・変更」から入力</p>
+      </div>
+      <div class="todo-card red">
+        <div class="todo-head">② 残金の引き落とし</div>
+        <p><strong>12/29 に 753,140円</strong> がカードから自動で引き落とし（申込金180,340円は支払い済み）。</p>
+        <p class="how">👉 12月中にカードの利用限度額を確認</p>
+      </div>
+      <div class="todo-card red">
+        <div class="todo-head">③ ETA（電子渡航認証）の申請</div>
+        <p>パスポートとは<strong>別もの</strong>。グアム入国に必須（有効なESTAがあれば不要）。</p>
+        <p class="how">👉 <a href="https://g-cnmi-eta.cbp.dhs.gov/" target="_blank" rel="noopener">g-cnmi-eta.cbp.dhs.gov</a></p>
       </div>
     </div>
 
-    <!-- ベッド構成の注意 -->
-    <div class="alert-box" style="background:linear-gradient(135deg,#fff3cd,#ffeaa7);">
-      <div class="alert-icon">🛏️</div>
-      <div class="alert-content">
-        <h3>お部屋は「ツインベッド2台」に4人</h3>
-        <p>予約されてるのは <strong>カメリアクラブルーム オーシャンビュー ツインベッドルーム（ラウンジアクセス込）／ベッド2台・1部屋・大人3名＋子ども1名</strong> や。</p>
-        <p style="margin-top:8px;">JTBの規定で「3名以上で1室利用の場合、3人目以降は原則<strong>簡易ベッド（エキストラベッド or ソファベッド）</strong>」となるで。つまり<strong>ベッド2台＋簡易ベッド2台に4人</strong>という想定。</p>
-        <p style="margin-top:8px;">想定と違うようなら、早めにJTBへ相談を 👉 <strong>（株）JTB HTA販売センター　050-3311-8439</strong>（平日10:00〜18:00）</p>
+    <div class="note-row">
+      <div class="note-box">
+        <strong>🛏️ お部屋はツインベッド2台に4人</strong>
+        <p>3人目以降は原則<strong>簡易ベッド</strong>（エキストラベッド or ソファベッド）。想定と違えば早めにJTBへ相談 → 050-3311-8439（平日10〜18時）</p>
       </div>
-    </div>
-
-    <!-- パスポート警告 -->
-    <div class="alert-box">
-      <div class="alert-icon">📌</div>
-      <div class="alert-content">
-        <h3>📘 パスポートをまだ持っていない場合は早めに申請を！</h3>
-        <p>2027年1月出発まで約1年！出発時、美緒さんは<strong>12歳（中1）</strong>、友也くんは<strong>10歳（小4）</strong>になってるで。</p>
-        <p style="background:rgba(46,134,79,0.12); border:1px solid rgba(46,134,79,0.3); border-radius:8px; padding:10px 12px; margin-top:10px; color:#1e5631;"><strong>💡 2026年7月1日から手数料が大きく値下げ！</strong><br>急がなければ<strong>7月以降にオンライン申請（マイナポータル）</strong>するのが一番お得やで😊　出発は2027年1月やから時間に余裕あり。（※制度開始直後は発行に<strong>約1か月</strong>かかる場合があるので、夏〜秋のうちに申請を）</p>
-        <ul>
-          <li>申請先：お住まいの市区町村の窓口（相模原市役所 等）、または<strong>マイナポータルでオンライン申請</strong></li>
-          <li>必要書類：顔写真・本人確認書類・申請書・手数料（オンラインなら戸籍謄本は原則不要）</li>
-          <li>未成年（子ども）のパスポートは<strong>親が同伴</strong>で申請</li>
-          <li><strong>【〜2026年6月30日 申請の料金】</strong>大人10年 各¥16,000／美緒さん5年 ¥11,000／友也くん5年 ¥6,000　→ 4人合計 <strong>¥49,000</strong></li>
-          <li><strong>【2026年7月1日〜 申請の料金・オンライン】</strong>大人10年 各¥8,900／美緒さん5年 ¥4,400／友也くん5年 ¥4,400　→ 4人合計 <strong>約¥26,600</strong>（窓口申請はやや高め）</li>
-          <li>👉 <strong>7月以降に申請すれば約¥22,000おトク！</strong></li>
-        </ul>
+      <div class="note-box">
+        <strong>📘 パスポートをまだ持っていない場合</strong>
+        <details class="memo plain">
+          <summary>申請方法と料金を見る</summary>
+          <ul>
+            <li>申請先：市区町村の窓口、または<strong>マイナポータルでオンライン申請</strong>（発行まで約1か月見ておく）</li>
+            <li>必要なもの：顔写真・本人確認書類・申請書・手数料</li>
+            <li>子どものパスポートは親が付き添って申請</li>
+            <li>料金（オンライン）：大人10年 各8,900円／子ども5年 各4,400円 → 4人で約26,600円</li>
+          </ul>
+        </details>
       </div>
     </div>
 
@@ -798,15 +938,15 @@
       <div class="check-card urgent">
         <div class="check-card-title">🔴 今すぐやること</div>
         <ul class="check-list">
-          <li><div class="check-box checked"></div><span style="color:#999; text-decoration:line-through;">航空券＋ホテルの予約</span>（JTBで確定済 2026/6/14）</li>
+          <li><div class="check-box checked"></div><span class="done">航空券＋ホテルの予約</span></li>
+          <li><div class="check-box checked"></div><span class="done">1/21 スキューバカンパニー</span></li>
           <li><div class="check-box" onclick="this.classList.toggle('checked')"></div>パスポート申請（全員分）</li>
-          <li><div class="check-box" onclick="this.classList.toggle('checked')"></div><strong>JTBにパスポート番号を登録</strong>（4人分・未入力）</li>
-          <li><div class="check-box" onclick="this.classList.toggle('checked')"></div><strong>Guam-CNMI ETA を申請</strong>（4人分）</li>
-          <li><div class="check-box"></div><strong>1/23 ゆうやけテラス</strong>（申込済み・手配中／4人分 $0・確定待ち）</li>
-          <li><div class="check-box checked"></div><span style="color:#999; text-decoration:line-through;"><strong>1/21 スキューバカンパニー</strong>の予約（マリン全部乗せ）</span>（JTBで購入済 2026/9/20）</li>
-          <li><div class="check-box" onclick="this.classList.toggle('checked')"></div><strong>1/22 カレラ</strong>の予約（サンドキャッスル・金曜公演）</li>
-          <li><div class="check-box" onclick="this.classList.toggle('checked')"></div>海外旅行保険の加入（t@bihoは出発3か月前から）</li>
-          <li><div class="check-box" onclick="this.classList.toggle('checked')"></div>12月：残金決済用カードの限度額を確認（<strong>12/29に753,140円</strong>引き落とし）</li>
+          <li><div class="check-box" onclick="this.classList.toggle('checked')"></div><strong>JTBにパスポート番号を登録</strong></li>
+          <li><div class="check-box" onclick="this.classList.toggle('checked')"></div><strong>ETA を申請</strong>（4人分）</li>
+          <li><div class="check-box" onclick="this.classList.toggle('checked')"></div><strong>1/22 カレラ</strong>の予約</li>
+          <li><div class="check-box"></div>1/23 ゆうやけテラス（確定待ち）</li>
+          <li><div class="check-box" onclick="this.classList.toggle('checked')"></div>海外旅行保険（出発3か月前から）</li>
+          <li><div class="check-box" onclick="this.classList.toggle('checked')"></div>12月：カードの限度額を確認</li>
         </ul>
       </div>
 
@@ -825,123 +965,91 @@
       <div class="check-card tip">
         <div class="check-card-title">🟢 持ち物リスト</div>
         <ul class="check-list">
-          <li><div class="check-box" onclick="this.classList.toggle('checked')"></div>パスポート（全員分）✅</li>
+          <li><div class="check-box" onclick="this.classList.toggle('checked')"></div>パスポート（全員分）</li>
           <li><div class="check-box" onclick="this.classList.toggle('checked')"></div>ETA承認の控え（印刷 or スマホ）</li>
           <li><div class="check-box" onclick="this.classList.toggle('checked')"></div>航空券・eチケット</li>
           <li><div class="check-box" onclick="this.classList.toggle('checked')"></div>ホテルバウチャー</li>
           <li><div class="check-box" onclick="this.classList.toggle('checked')"></div>海外保険証書</li>
           <li><div class="check-box" onclick="this.classList.toggle('checked')"></div>クレジットカード</li>
           <li><div class="check-box" onclick="this.classList.toggle('checked')"></div>充電器・変換プラグ</li>
-          <li><div class="check-box" onclick="this.classList.toggle('checked')"></div>シュノーケルセット</li>
+          <li><div class="check-box" onclick="this.classList.toggle('checked')"></div>1/21用の軽食・バスタオル</li>
         </ul>
       </div>
     </div>
 
-    <!-- オプショナルツアー未予約の注意 -->
     <!-- オプショナルツアー手配状況 -->
-    <div style="max-width:900px; margin:35px auto 0; background:white; border-radius:16px; padding:28px; box-shadow:0 4px 20px rgba(0,105,148,0.12); border-top:4px solid var(--coral);">
-      <h3 style="font-size:1.05rem; font-weight:700; color:var(--dark); margin-bottom:6px;">🎫 オプショナルツアー 手配状況</h3>
-      <p style="font-size:0.82rem; color:#777; margin-bottom:18px;">JTBのツアー本体に含まれてるのは「充実のサポート」（LINE相談）だけ。アクティビティは別途手配が必要やで。</p>
-
-      <div style="background:#fff8e1; border-radius:12px; padding:16px 18px; margin-bottom:14px; border-left:4px solid #f39c12;">
-        <strong style="font-size:0.9rem; color:#7f4f24;">🟡 申込済み・手配中（確定待ち） ── 1/23（土）ゆうやけテラスツアー at 恋人岬</strong>
-        <p style="font-size:0.82rem; color:#333; margin-top:6px; line-height:1.6;">
-          16:45集合〜19:30頃（予定）／往復送迎・展望台入場料・ドリンク券2枚＆スナック込み<br>
-          <strong style="color:#7f4f24;">「見つかる！グアム！キャンペーン」特典を4人分 $0で申込済み。JTBの現在表示は「手配中」</strong><br>
-          <span style="color:#c0392b; font-size:0.78rem;">※ 正式成立は「手配済み／予約確定」への更新または確定メールの到着後。重複申込みはせず、案内を待つで</span><br>
-          <span style="color:#c0392b; font-size:0.78rem;">※ 取消はココ夏ッ通信側で別途手続きが必要。JTB本体をキャンセルしても自動では消えへんで</span>
-        </p>
+    <div class="panel" style="border-top-color:var(--coral);">
+      <h3 class="panel-title">🎫 オプショナルツアー 手配状況</h3>
+      <div class="tour-grid">
+        <div class="tour-card ok">
+          <div class="tour-status">✅ 予約確定</div>
+          <div class="tour-name">1/21（木）スキューバカンパニー</div>
+          <p>イルカ＆ウミガメ＋オーシャンパーク＋パラセール</p>
+          <p>8:45 ロビーでお迎え → 14:15頃ホテル着</p>
+          <p class="price">4人 78,242円（支払い76,742円）</p>
+        </div>
+        <div class="tour-card todo">
+          <div class="tour-status">🔲 未予約</div>
+          <div class="tour-name">1/22（金）カレラ</div>
+          <p>サンドキャッスルのショー（19:45〜約1時間）</p>
+          <p>送迎なし・ビーチウェア不可</p>
+          <p class="price">4人 51,240円（予定）</p>
+        </div>
+        <div class="tour-card wait">
+          <div class="tour-status">🟡 手配中（確定待ち）</div>
+          <div class="tour-name">1/23（土）ゆうやけテラス</div>
+          <p>恋人岬で夕日観賞（16:45〜19:30頃）</p>
+          <p>キャンペーン特典で4人分 $0</p>
+          <p class="price">確定メールを待つ（重複申込みしない）</p>
+        </div>
       </div>
 
-      <div style="background:#e8f5e9; border-radius:12px; padding:16px 18px; margin-bottom:14px; border-left:4px solid var(--palm);">
-        <strong style="font-size:0.9rem; color:#1e5631;">✅ 予約済み（購入済 2026/9/20） ── 1/21（木）スキューバカンパニー マリンスポーツ</strong>
-        <p style="font-size:0.82rem; color:#555; margin-top:6px; line-height:1.7;">
-          コース：<strong>イルカ＆ウミガメウォッチング＋オーシャンパーク＋パラセール</strong>（ランチなし）<br>
-          <strong>4人合計 78,242円（ポイント1,500円利用で支払い76,742円・JTBで支払い済み）</strong>／8:45ツバキ タワーのロビーでお迎え → 14:15頃ホテル着<br>
-          <span style="color:#7f4f24; font-size:0.78rem;">※ 見積もり時の74,890円から、購入時点の料金で78,242円に確定</span><br>
-          <span style="color:var(--palm); font-weight:700;">JTB売れ筋2位</span>の定番。パラセールは2人乗りで親子ペアOK🎈<br>
-          <span style="color:#c0392b;">⚠️ 6歳以上／16歳未満は保護者の付き添い必須／<strong>昼食なし</strong>（軽食持参がおすすめ）／当日の飲酒NG／水着着用で集合・バスタオル持参・濡れたまま送迎車はNG</span><br><span style="color:#c0392b;">⚠️ キャンセル料：3日前の17:00から50%、前々日の17:00から100%</span>
-        </p>
+      <div class="note-row" style="margin-top:16px;">
+        <div class="note-box warn">
+          <strong>⏰ 手配期限：2026/12/28</strong>
+          <p>これを過ぎると自分で申し込めず、コンタクトボードからの問い合わせになる。カレラは早めに。</p>
+        </div>
+        <div class="note-box warn">
+          <strong>🚫 買わなくていいもの（二重払い注意）</strong>
+          <p>空港送迎・赤いシャトルバス乗り放題券 → どちらもツアーに込み</p>
+        </div>
       </div>
 
-      <div style="background:#fff8f0; border-radius:12px; padding:16px 18px; margin-bottom:14px; border-left:4px solid var(--sunset);">
-        <strong style="font-size:0.9rem;">🔲 未手配 ── 1/22（金）カレラ at サンドキャッスル</strong>
-        <p style="font-size:0.82rem; color:#555; margin-top:6px; line-height:1.7;">
-          レギュラーショー：大人15,766円／6〜11歳 3,942円 ＝ <strong>4人で51,240円</strong><br>
-          ドアオープン18:45／開演19:45／終演20:45（公演 約1時間）<br>
-          <span style="color:var(--palm); font-weight:700;">JTB売れ筋1位</span>。シルク・ドゥ・ソレイユ等のクリエイター製作の本格ステージ<br>
-          <span style="color:#c0392b;">⚠️ <strong>送迎なし</strong>（赤いシャトルバスで自力移動）／<strong>ビーチウェア不可</strong>／食事なし（夕食は別で済ませる）／美緒ちゃんは12歳から大人料金</span><br>
-          🗓️ 月・火・木・金・土公演（<strong>日・水は休演</strong>）
-        </p>
-      </div>
-
-      <div style="background:#f5f5f5; border-radius:12px; padding:14px 18px; margin-bottom:14px; border-left:4px solid #bbb;">
-        <strong style="font-size:0.88rem; color:#666;">💭 検討したけど見送ったもの</strong>
-        <p style="font-size:0.8rem; color:#777; margin-top:5px; line-height:1.7;">
-          ・<strong>気軽に半日南部ツアー</strong>（4人18,920円）… 安くて売れ筋9位やけど、<strong>ガイドなし</strong>で6スポット中4つが砦・歴史系。子どもが退屈しそうなので見送り<br>
-          ・<strong>オフロードアドベンチャー</strong>（4人39,954円）… <strong>バギー運転は18歳以上のみ</strong>で子どもは同乗のみ。40分で4万円はコスパ悪し<br>
-          ・<strong>PICウォーターパーク</strong>（4人60,701円）… 子どもの満足度は最強やけど、1/21のマリンと water 系が重複。<strong>毎日催行やから当日の様子を見て追加も可能</strong>（※キャンセルは前日16時以降100%）<br>
-          ・<strong>タロフォフォの滝</strong>… JTBに単独ツアーがなく、ミニバンチャーター（4名総額 2時間23,972円＋1時間11,986円）が必要。割高なので見送り
-        </p>
-      </div>
-
-      <div style="background:#fff3cd; border-radius:12px; padding:14px 18px; border-left:4px solid #f39c12;">
-        <strong style="font-size:0.88rem; color:#7f4f24;">⏰ 手配期限：2026/12/28（出発23日前）</strong>
-        <p style="font-size:0.8rem; color:#7f4f24; margin-top:5px; line-height:1.6;">これを過ぎると自分で手続きできんくなって、コンタクトボードからの問い合わせになるで。人気枠は先に埋まるから早めにな。</p>
-      </div>
-
-      <div style="background:#ffe3e3; border-radius:12px; padding:14px 18px; margin-top:14px; border-left:4px solid #e74c3c;">
-        <strong style="font-size:0.88rem; color:#c0392b;">🚫 買わんでええもん（二重払い注意）</strong>
-        <p style="font-size:0.8rem; color:#7f4f24; margin-top:5px; line-height:1.7;">
-          ・<strong>空港送迎 往復（2,557円）</strong> → ツアーに込み済み<br>
-          ・<strong>赤いシャトルバス乗り放題券（2,365円）</strong> → 特典で乗り放題（＋mobiも）<br>
-          4人分やと約2万円の無駄になるとこやで。
-        </p>
-      </div>
+      <details class="memo">
+        <summary>検討したけど見送ったツアーを見る</summary>
+        <ul>
+          <li><strong>半日南部ツアー</strong>（4人18,920円）… ガイドなしで歴史系が多く、子どもが退屈しそう</li>
+          <li><strong>オフロードアドベンチャー</strong>（4人39,954円）… 運転は18歳以上のみ。40分で4万円は割高</li>
+          <li><strong>PICウォーターパーク</strong>（4人60,701円）… 1/21と内容が重なる。毎日やっているので現地で追加も可</li>
+          <li><strong>タロフォフォの滝</strong>… 単独ツアーがなく、車の貸切が必要で割高</li>
+          <li>ゆうやけテラスの取消は、ココ夏ッ通信のページで別に手続きが必要（JTB本体を取り消しても自動では消えない）</li>
+        </ul>
+      </details>
     </div>
 
     <!-- 余力があれば -->
-    <div style="max-width:900px; margin:20px auto 0; background:white; border-radius:16px; padding:24px 28px; box-shadow:0 4px 20px rgba(0,105,148,0.08);">
-      <h3 style="font-size:0.98rem; font-weight:700; color:var(--dark); margin-bottom:6px;">➕ 現地で「まだ遊び足りん！」となったら</h3>
-      <p style="font-size:0.8rem; color:#777; margin-bottom:12px;">1/24（日）の午前や、1/22の昼間に差し込める候補。当日の子どもの元気度を見て決めたらええで。</p>
-      <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:12px; font-size:0.82rem;">
-        <div style="background:#f0f9ff; border-radius:10px; padding:12px 14px;"><strong>🎢 PICグアム ウォーターパーク1日券</strong><br><span style="color:#666;">大人17,343円／子供(2-11歳)8,672円・9:00〜17:00<br><strong>毎日催行</strong>なので前日でも取れる可能性あり</span></div>
-        <div style="background:#f0f9ff; border-radius:10px; padding:12px 14px;"><strong>🪢 ジップライン</strong><br><span style="color:#666;">大人6,233円／子供(6-12歳)4,635円・約1.5時間<br>※ヒルトン内。タロフォフォの滝ちゃうで</span></div>
-        <div style="background:#f0f9ff; border-radius:10px; padding:12px 14px;"><strong>✈️ セスナ遊覧飛行</strong><br><span style="color:#666;">15,766円〜／上空からグアム一周</span></div>
-        <div style="background:#f0f9ff; border-radius:10px; padding:12px 14px;"><strong>🛒 デデド朝市</strong><br><span style="color:#666;">シャトル往復3,197円／<strong>土日の早朝のみ</strong>→1/24（日）の朝が唯一のチャンス</span></div>
+    <div class="panel">
+      <h3 class="panel-title">➕ 現地で「まだ遊び足りん！」となったら</h3>
+      <p class="panel-lead">1/22の昼間や1/24の午前に入れられる候補。子どもの元気度を見て決めたらええで。</p>
+      <div class="mini-grid">
+        <div class="mini-card"><strong>🎢 PICウォーターパーク</strong><span>大人17,343円／子供8,672円・毎日営業</span></div>
+        <div class="mini-card"><strong>🪢 ジップライン</strong><span>大人6,233円／子供4,635円・約1.5時間</span></div>
+        <div class="mini-card"><strong>✈️ セスナ遊覧飛行</strong><span>15,766円〜／上空からグアム一周</span></div>
+        <div class="mini-card"><strong>🛒 デデド朝市</strong><span>土日の早朝のみ → 1/24の朝がチャンス</span></div>
       </div>
-      <p style="font-size:0.76rem; color:#999; margin-top:12px;">※ 表示は「〜円から」の最低価格。人数・コース・日付で変わるんで、予約画面で確定額を確認してな。</p>
+      <p class="panel-foot">※ 金額は「〜円から」の目安。予約画面で確定額を確認してな。</p>
     </div>
 
     <!-- ツアー特典 -->
-    <div style="max-width:900px; margin:35px auto 0; background:white; border-radius:16px; padding:28px; box-shadow:0 4px 20px rgba(0,105,148,0.12); border-top:4px solid var(--palm);">
-      <h3 style="font-size:1.05rem; font-weight:700; color:var(--dark); margin-bottom:6px;">🎁 このツアーに付いてくる特典（使わな損！）</h3>
-      <p style="font-size:0.82rem; color:#777; margin-bottom:16px;">ルックJTB＋ザ ツバキ タワー カメリアクラブルームの特典。現地交通費と食費がかなり浮くで。</p>
-      <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:14px;">
-        <div style="background:#f0f9ff; border-radius:12px; padding:14px 16px;">
-          <strong style="font-size:0.88rem;">🚌 赤いシャトルバス乗り放題</strong>
-          <p style="font-size:0.8rem; color:#555; margin-top:5px; line-height:1.5;">タモンシャトル北廻り・南廻り／ショッピングモールシャトルが滞在中乗り放題</p>
-        </div>
-        <div style="background:#f0f9ff; border-radius:12px; padding:14px 16px;">
-          <strong style="font-size:0.88rem;">🚐 mobi 乗り放題</strong>
-          <p style="font-size:0.8rem; color:#555; margin-top:5px; line-height:1.5;">乗合型移動サービス。日本語アプリで配車。シャトルが走ってない場所にも行ける（乗車時に黄色のコンチャカード提示）</p>
-        </div>
-        <div style="background:#fff8f0; border-radius:12px; padding:14px 16px;">
-          <strong style="font-size:0.88rem;">☕ リナラ クラブラウンジ利用可</strong>
-          <p style="font-size:0.8rem; color:#555; margin-top:5px; line-height:1.5;"><strong>朝食</strong>はラウンジ or ホテル内レストランで。ティータイム・カクテルタイムも利用OK</p>
-        </div>
-        <div style="background:#fff8f0; border-radius:12px; padding:14px 16px;">
-          <strong style="font-size:0.88rem;">🍽️ レストラン30%割引クーポン</strong>
-          <p style="font-size:0.8rem; color:#555; margin-top:5px; line-height:1.5;">1部屋につき滞在中1回。「ミラノグリル」「カサオセアノ」「ヌヌバー」で使えるで</p>
-        </div>
-        <div style="background:#f0fff4; border-radius:12px; padding:14px 16px;">
-          <strong style="font-size:0.88rem;">🍺 ルックJTBハッピーアワー</strong>
-          <p style="font-size:0.8rem; color:#555; margin-top:5px; line-height:1.5;">滞在中毎日17:00〜18:00、ホテル内バーでドリンク（21歳以上対象）</p>
-        </div>
-        <div style="background:#f0fff4; border-radius:12px; padding:14px 16px;">
-          <strong style="font-size:0.88rem;">💧 ボトルウォーターサービス</strong>
-          <p style="font-size:0.8rem; color:#555; margin-top:5px; line-height:1.5;">プールカウンターでルックJTBパスを見せると家族分もらえる。滞在中何度でもOK</p>
-        </div>
+    <div class="panel" style="border-top-color:var(--palm);">
+      <h3 class="panel-title">🎁 このツアーに付いてくる特典（使わな損！）</h3>
+      <div class="mini-grid">
+        <div class="mini-card"><strong>🚌 赤いシャトルバス乗り放題</strong><span>タモン北・南廻り／モールシャトル</span></div>
+        <div class="mini-card"><strong>🚐 mobi 乗り放題</strong><span>アプリで配車。黄色のコンチャカードを見せて乗る</span></div>
+        <div class="mini-card"><strong>☕ クラブラウンジ</strong><span>朝食・ティータイム・カクテルタイム</span></div>
+        <div class="mini-card"><strong>🍽️ レストラン30%割引</strong><span>滞在中1回（ミラノグリル・カサオセアノ・ヌヌバー）</span></div>
+        <div class="mini-card"><strong>🍺 ハッピーアワー</strong><span>毎日17〜18時・21歳以上</span></div>
+        <div class="mini-card"><strong>💧 ボトルウォーター</strong><span>プールカウンターでルックJTBパスを見せる</span></div>
       </div>
     </div>
   </div>
