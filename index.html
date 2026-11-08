@@ -560,6 +560,9 @@
   .note-box p { margin-top: 4px; }
   details.memo.plain { border-top: none; padding-top: 0; margin-top: 6px; }
   .check-list .done { color: #999; text-decoration: line-through; }
+  .check-list .check-detail { list-style: none; margin: 4px 0 0; padding: 0; display: block; }
+  .check-list .check-detail li { display: block; font-size: 0.75rem; color: #888; line-height: 1.5; padding-left: 0.9em; text-indent: -0.9em; }
+  .check-list .check-detail li::before { content: "・"; }
 
   .panel { max-width: 1160px; margin: 30px auto 0; background: white; border-radius: 16px; padding: 26px 30px; box-shadow: 0 4px 20px rgba(0,105,148,0.1); border-top: 4px solid var(--ocean); }
   .panel-title { font-size: 1.1rem; font-weight: 700; color: var(--dark); margin-bottom: 14px; }
@@ -978,7 +981,14 @@ html:not(.parent-view) .yen{display:none !important}
           <li><div class="check-box checked"></div><span class="done">1/23 ゆうやけテラス</span></li>
           <li><div class="check-box" onclick="this.classList.toggle('checked')"></div>海外旅行保険（出発3か月前から）</li>
           <li class="parent-only"><div class="check-box" onclick="this.classList.toggle('checked')"></div>12月：カードの限度額を確認</li>
-          <li><div class="check-box checked"></div><span class="done">スーツケースのレンタル予約（アールワイレンタル）</span><br><small>アントラー リクイス 88L シルバー（3.2kg）＋手持ちの65L（VARNIC）の2個とも預け入れ／1/16午前に自宅着・1/26までに発送で返却（同梱の返却伝票で集荷 or コンビニ）<span class="parent-only">／6,525円（カード決済済み）</span></small></li>
+          <li><div class="check-box checked"></div><div><span class="done">スーツケースのレンタル予約</span>
+            <ul class="check-detail">
+              <li>アールワイレンタル：アントラー リクイス 88L（3.2kg）</li>
+              <li>手持ちの65L（VARNIC）と2個とも預け入れ</li>
+              <li>お届け：1/16（土）午前・自宅</li>
+              <li>返却：1/26までに発送（集荷 or コンビニ）</li>
+              <li class="parent-only">料金：6,525円（カード決済済み）</li>
+            </ul></div></li>
         </ul>
       </div>
 
